@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192" role="img" aria-label="Svenska Vägen">
+  <defs>
+    <linearGradient id="fjordBg192" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B4D7E" />
+      <stop offset="100%" stop-color="#123659" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="40" fill="url(#fjordBg192)" />
+  <rect x="0" y="82" width="192" height="28" fill="#D98A1A" opacity="0.22" />
+  <rect x="60" y="0" width="28" height="192" fill="#D98A1A" opacity="0.22" />
+  <path
+    d="M44 136 C68 124, 78 96, 96 96 C114 96, 124 68, 148 56"
+    fill="none"
+    stroke="#F2B449"
+    stroke-width="14"
+    stroke-linecap="round"
+  />
+  <circle cx="96" cy="48" r="11" fill="#F8F9FA" />
+  <circle cx="148" cy="56" r="10" fill="#F8F9FA" />
+  <circle cx="44" cy="136" r="10" fill="#F2B449" />
+</svg>
