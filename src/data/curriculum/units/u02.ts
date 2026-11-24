@@ -219,7 +219,7 @@ export const u02: UnitContent = {
       unitId: 'u02',
       type: 'word-order',
       grammarTag: 'sentence-building',
-      prompt: 'Order the tiles to say "We are baking red bread today":',
+      prompt: 'Order the tiles to say "We are baking good bread today":',
       slotHints: ['Subject', 'Verb (V2)', 'Object', 'Time'],
       chunks: ['idag', 'bakar', 'gott bröd', 'Vi'],
       correctOrder: ['Vi', 'bakar', 'gott bröd', 'idag'],

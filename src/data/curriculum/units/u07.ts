@@ -40,7 +40,7 @@ export const u07: UnitContent = {
       body: 'Train, bus, and cinema schedules use 24-hour times (15:30 = femton och trettio). Notice how prepositions change past vs. future weekdays.',
       examples: [
         {
-          sv: 'Tåget avgår klockan 14:15 (fjorton och femton).',
+          sv: 'Tåget avgår klockan 14:15 (fjorton femton).',
           en: 'The train departs at 14:15.',
           note: '24-hour digital timetable style',
         },

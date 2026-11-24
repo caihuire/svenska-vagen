@@ -27,7 +27,7 @@ export const u13: UnitContent = {
         rows: [
           ['Regular', 'varm, grön, gul', 'varmt, grönt, gult', 'varma, gröna, gula'],
           ['Long vowel / V+d -> -tt', 'fri, blå, glad, röd', 'fritt, blått, glatt, rött', 'fria, blåa, glada, röda'],
-          ['Consonant+d / -tt -> -t / no change', 'hård, lätt, svart', 'hårt, lätt, svart', 'hårda, lätta, svarta'],
+          ['Consonant+d / Consonant+t / -tt -> -t / no change', 'hård, lätt, svart', 'hårt, lätt, svart', 'hårda, lätta, svarta'],
           ['-el/-en/-er drops -e-', 'enkel, vacker, ledsen', 'enkelt, vackert, ledset', 'enkla, vackra, ledsna'],
           ['Irregular', 'liten, gammal', 'litet, gammalt', 'små, gamla'],
         ],

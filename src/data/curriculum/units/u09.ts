@@ -197,7 +197,7 @@ export const u09: UnitContent = {
       prompt: 'Tap the agreement mistake with the ett-noun "barn" and choose the fix:',
       tokens: ['Jag', 'hämtar', 'min', 'barn', 'från', 'skolan', 'klockan', 'tre.'],
       errorIndex: 2,
-      options: ['mitt', 'mina', 'din'],
+      options: ['mitt', 'sin', 'din'],
       correctCorrection: 'mitt',
       explanation: 'Barn is an ett-noun (ett barn), so singular "my child" requires mitt barn (or mina barn for plural).',
       ttsText: 'Jag hämtar mitt barn från skolan klockan tre.',

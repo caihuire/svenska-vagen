@@ -135,7 +135,7 @@ function buildVerbExercise(
     { key: 'past', prompt: `Write the past tense (preteritum) of "${forms.inf}"`, answer: forms.past },
     { key: 'supine', prompt: `Write the supine (used after "har") of "${forms.inf}"`, answer: forms.supine },
     { key: 'imp', prompt: `Write the imperative of "${forms.inf}"`, answer: forms.imp },
-  ].filter((s) => Boolean(s.answer));
+  ].filter((s) => Boolean(s.answer) && !/^[—-]+$/.test(s.answer.trim()));
 
   if (slots.length === 0) return null;
   const chosen = slots[Math.floor(rng() * slots.length)];

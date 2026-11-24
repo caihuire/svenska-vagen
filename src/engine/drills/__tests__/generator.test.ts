@@ -168,4 +168,49 @@ describe('generateMorphologyDrills', () => {
       }
     }
   });
+
+  it('never generates imperative drills with placeholder dashes for modal verbs', () => {
+    const modalLexicon: LexiconEntry[] = [
+      {
+        id: 'verb:kunna',
+        lemma: 'kunna',
+        en: 'can',
+        pos: 'verb',
+        unitId: 'u11',
+        stage: 'A1',
+        tags: ['modal'],
+        morph: {
+          pos: 'verb',
+          group: 'irreg',
+          forms: { inf: 'kunna', imp: '—', pres: 'kan', past: 'kunde', supine: 'kunnat' },
+        },
+      },
+      {
+        id: 'verb:måste',
+        lemma: 'måste',
+        en: 'must',
+        pos: 'verb',
+        unitId: 'u11',
+        stage: 'A1',
+        tags: ['modal'],
+        morph: {
+          pos: 'verb',
+          group: 'irreg',
+          forms: { inf: 'måste', imp: '—', pres: 'måste', past: 'måste', supine: 'måst' },
+        },
+      },
+    ];
+
+    for (let seed = 1; seed <= 30; seed++) {
+      const drills = generateMorphologyDrills('verbs', modalLexicon, 10, seed);
+      expect(drills.length).toBeGreaterThan(0);
+      for (const ex of drills) {
+        expect(ex.type).toBe('morph-fill');
+        if (ex.type === 'morph-fill') {
+          expect(ex.accepted[0]).not.toMatch(/^[—-]+$/);
+          expect(ex.prompt.toLowerCase()).not.toContain('imperative');
+        }
+      }
+    }
+  });
 });

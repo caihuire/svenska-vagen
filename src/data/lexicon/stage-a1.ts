@@ -616,7 +616,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     unitId: 'u02',
     stage: 'A1',
     ipa: '/jɛst/',
-    example: { sv: 'Varje gäst får en kopp kaffe när de kommer.', en: 'Every guest gets a cup of coffee when they arrive.' },
+    example: { sv: 'Varje gäst får en kopp kaffe när hen kommer.', en: 'Every guest gets a cup of coffee when they arrive.' },
     tags: ['social'],
     morph: { pos: 'noun', gender: 'en', declension: 3 },
   },
@@ -2663,7 +2663,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/kvatː/',
     example: { sv: 'Tåget går klockan kvart i åtta.', en: 'The train leaves at a quarter to eight.' },
     tags: ['time'],
-    morph: { pos: 'noun', gender: 'en', declension: 3 },
+    morph: { pos: 'noun', gender: 'en', declension: 2 },
   },
   {
     id: 'adj:halv',
@@ -3239,7 +3239,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     unitId: 'u09',
     stage: 'A1',
     ipa: '/dɔmː/',
-    example: { sv: 'Jag bjuder dem på nybakt paj ikväll.', en: 'I am treating them to freshly baked pie tonight.' },
+    example: { sv: 'Jag bjuder dem på nybakad paj ikväll.', en: 'I am treating them to freshly baked pie tonight.' },
     tags: ['pronoun', 'object'],
   },
   {
@@ -3703,7 +3703,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     unitId: 'u10',
     stage: 'A1',
     ipa: '/ˈliːtɛn/',
-    example: { sv: 'Det står ett litet kafé och två små stolar på trottoaren.', en: 'There is a small café and two little chairs on the sidewalk.' },
+    example: { sv: 'Det ligger ett litet kafé med två små stolar vid trottoaren.', en: 'There is a small café with two little chairs by the sidewalk.' },
     tags: ['descriptive'],
     morph: {
       pos: 'adj',

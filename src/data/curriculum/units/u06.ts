@@ -6,7 +6,7 @@ export const u06: UnitContent = {
   stage: 'A1',
   title: 's-Genitives & 7 Noun Plurals',
   grammarFocus:
-    's-genitive without apostrophe (place names ending in vowel or -s/-z take no -s); all 7 plural declensions (-or, -ar, -er, -r, -n, zero, -s), stem-vowel dropping (-el/-en/-er), and plural prediction rules.',
+    's-genitive without apostrophe (place names ending in -s, -x, or -z take no -s); all 7 plural declensions (-or, -ar, -er, -r, -n, zero, -s), stem-vowel dropping (-el/-en/-er), and plural prediction rules.',
   culturalTheme: 'National Parks & Nature Reserves',
   available: true,
   grammarCards: [
@@ -28,7 +28,7 @@ export const u06: UnitContent = {
           ['1', '-or', 'en-nouns in unstressed -a (drop -a)', 'blomma -> blommor'],
           ['2', '-ar', 'many 1-syll. en, -e, -ing, -el/-er', 'stol -> stolar, fågel -> fåglar'],
           ['3', '-er', 'stressed-end loans, -het/-tion, some ett', 'park -> parker, kafé -> kaféer'],
-          ['4', '-r', 'short vowel-end en (ko, sko) & -ie', 'ko -> kor, linje -> linjer'],
+          ['4', '-r', '1-syll. vowel-end en (ko, sko) & -je/-ie', 'ko -> kor, linje -> linjer'],
           ['5', '-n', 'ett-nouns ending in a vowel', 'ställe -> ställen, möte -> möten'],
           ['6', '— (zero)', 'most consonant-end ett & en in -are', 'bord -> bord, fönster -> fönster'],
           ['7', '-s', 'recent English loans (optional)', 'en fan -> fans'],
@@ -211,12 +211,12 @@ export const u06: UnitContent = {
       type: 'error-spotting',
       grammarTag: 's-genitive',
       prompt: 'Tap the English punctuation error and pick the Swedish fix:',
-      tokens: ['Det', 'ligger', 'två', "Erik's", 'böcker', 'på', 'soffan.'],
-      errorIndex: 3,
+      tokens: ['Det', 'ligger', "Erik's", 'böcker', 'på', 'soffan.'],
+      errorIndex: 2,
       options: ['Eriks', 'Erik', "Eriks'"],
       correctCorrection: 'Eriks',
       explanation: 'Never use an apostrophe in Swedish s-genitives: write Eriks.',
-      ttsText: 'Det ligger två Eriks böcker på soffan.',
+      ttsText: 'Det ligger Eriks böcker på soffan.',
     },
     {
       id: 'u06-ex-10',

@@ -58,7 +58,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     stage: 'A1',
     title: 's-Genitives & 7 Noun Plurals',
     grammarFocus:
-      's-genitive without apostrophe (place names ending in vowel or -s/-z take no -s); all 7 plural declensions (-or, -ar, -er, -r, -n, zero, -s), stem-vowel dropping (-el/-en/-er), and plural prediction rules.',
+      's-genitive without apostrophe (place names ending in -s, -x, or -z take no -s); all 7 plural declensions (-or, -ar, -er, -r, -n, zero, -s), stem-vowel dropping (-el/-en/-er), and plural prediction rules.',
     culturalTheme: 'National Parks & Nature Reserves',
     available: true,
   },
@@ -88,7 +88,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     stage: 'A1',
     title: 'Personal, Possessive & Indefinite Pronouns',
     grammarFocus:
-      'Reflexive object pronoun sig (3rd person); hen; possessive agreement (min/mitt/mina, din, vår, er, indeclinable hans/hennes/dess/deras); intro to sin/sitt/sina; indefinites (någon/något/några, ingen/inget/inga, annan/annat/andra, man/en/ens/sig/sin).',
+      'Reflexive object pronoun sig (3rd person); hen; possessive agreement (min/mitt/mina, din, vår, er, indeclinable hans/hennes/dess/deras); intro to reflexive possessive sin/sitt/sina; indefinites (någon/något/några, ingen/inget/inga, annan/annat/andra, man/en/ens/sig/sin).',
     culturalTheme: 'Allemansrätten (Right to Roam)',
     available: true,
   },
