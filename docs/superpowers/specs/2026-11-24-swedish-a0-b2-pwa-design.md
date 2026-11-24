@@ -11,7 +11,7 @@
 
 - **Goal:** Take a learner from zero Swedish (A0) to ~B2 proficiency through structured grammar progression, high-volume word-form drilling, spaced-repetition vocabulary retention, Swedish audio listening, and graded cultural reading.
 - **Phone-First, Zero-Install:** Runs directly in mobile Safari/Chrome (375px–430px viewports) with optional "Add to Home Screen" PWA offline caching.
-- **Zero-Backend Persistence:** All progress, SRS cards, streaks, and settings stored locally on-device with 1-tap JSON export/import backup.
+- **Zero-Backend Portable Persistence:** All progress, SRS cards, streaks, and settings are stored locally on-device and are portable across multiple phones via **1-tap Compressed Sync Codes (`SV1:...`)** (copy/paste through any chat app with smart merging) plus **JSON file export/import** (Google Drive / OneDrive / iCloud).
 - **Rollout Strategy (Wave Rollout — Option A):**
   - **Wave 1 (Initial Release):** Complete application (all screens, engines, SRS, Drill Arena, Cultural Reader, TTS audio, streaks, GitHub Pages CI/CD) + **deeply authored Stage A1 (Units 1–13)** (~325 tagged lexicon words, ~140 curated exercises, 13 original cultural readings) + full 51-unit curriculum manifest (Units 14–51 visible on the Skill Path as previewable outlines for Waves 2–4).
   - **Waves 2–4:** Deep content expansion for Stage A2 (Units 14–25), Stage B1 (Units 26–38), and Stage B2 (Units 39–51).
@@ -134,6 +134,8 @@ src/
 ├── storage/
 │   ├── adapter.ts                # StorageAdapter interface + localStorage implementation
 │   ├── migrations.ts             # Schema version upgrades (v1 -> vN)
+│   ├── merge.ts                  # Deterministic smart-merge across two UserProgress snapshots
+│   ├── syncCode.ts               # Compact gzip + Base64URL Sync Code (`SV1:...`) + checksum
 │   └── backup.ts                 # JSON export (Web Share / download) & validated import
 ├── store/                        # React Context + reducer app state
 ├── features/                     # path/, unit/, drills/, srs/, reader/, profile/
@@ -149,8 +151,10 @@ src/
 
 ### 5.3 PWA, Storage, Audio & Testing
 - **GitHub Pages Deployment:** `vite.config.ts` uses `base: './'`, `HashRouter` for client routes, and `.github/workflows/deploy.yml` to build, run tests, and deploy `dist/` to GitHub Pages automatically.
-- **Storage Resilience:** Synchronous `localStorage` (`<250 KB` JSON) behind `StorageAdapter`. After completing Unit 1 on iOS Safari, show a dismissible "Add to Home Screen" tip to prevent Safari's 7-day script-storage eviction. Profile tab includes 1-tap JSON Export (`navigator.share` with download fallback) and validated Import with diff preview.
+- **Storage Resilience & Multi-Phone Sync:** Synchronous `localStorage` (`<250 KB` JSON) behind `StorageAdapter`. After completing Unit 1 on iOS Safari, show a dismissible "Add to Home Screen" tip to prevent Safari's 7-day script-storage eviction. Profile tab includes:
+  1. **Portable Sync Code (`SV1:...`):** Encodes `UserProgress` into a compact tuple payload, compresses it (gzip/deflate + Base64URL + checksum), and offers 1-tap **Copy / Share to Chat** and **Paste & Smart-Merge** (merging newest `lastReviewedAt` per SRS card, highest mastery per unit, and union of active streak days, with a diff preview before applying).
+  2. **JSON File Export / Import:** 1-tap Export (`navigator.share` for Google Drive / OneDrive / iCloud or file download) and validated Import with the same smart-merge preview.
 - **Swedish TTS (`sv-SE`):** Plays at `1.0x` or `0.75x`, invokes `speechSynthesis.speak()` synchronously inside click handlers for iOS Safari, exposes `isSpeaking` and `stop()` (called automatically on card flip/navigation), and chains sentences sequentially for Cultural Reader `▶ Play all`. Synthetic TTS is never used to grade subtle pitch-accent (Accent 1 vs 2) drills.
 - **Automated Verification (Vitest):**
-  - Unit tests for `morphology/` inflector & 2-tier diacritic normalizer, `srs/` scheduler & leech transitions, `mastery/` streak/freeze/weak-spot math, `reader/` markup parser, and `storage/` migrations & backup validation.
+  - Unit tests for `morphology/` inflector & 2-tier diacritic normalizer, `srs/` scheduler & leech transitions, `mastery/` streak/freeze/weak-spot math, `reader/` markup parser, and `storage/` migrations, `syncCode` round-trip/corruption checks, and `merge` conflict resolution.
   - **Content Integrity Gate:** Automated test verifying every unit's `lexiconIds` resolve, every inline reader token links to a valid `LexiconEntry` or inline gloss, and every irregular word has explicit `forms` overrides.
