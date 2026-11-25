@@ -172,7 +172,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Regular -are/-ast; mer/mest (participles, -isk, -ande/-ende); irregulars (god/bra -> bättre/bäst, dålig -> sämre/sämst, gammal -> äldre/äldst, liten -> mindre/minst); vowel-change -re/-st (stor/större, lång/längre, ung/yngre, hög/högre); definite superlatives.',
     culturalTheme: 'The Moose (Älgen)',
-    available: false,
+    available: true,
   },
   {
     id: 'u18',
