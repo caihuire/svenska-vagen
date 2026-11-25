@@ -142,7 +142,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Singular definite (-en/-n, -et/-t, dropping -e- in neuter -el/-en/-er); plural definite (-na, -a, -en); article contrasts vs. English (abstract nouns, institutions, professions/nationalities, instruments/pastimes).',
     culturalTheme: 'Swedish Currency (Krona & Öre)',
-    available: false,
+    available: true,
   },
   {
     id: 'u15',
