@@ -182,7 +182,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Sub-clause straight order (conj + subj + verb); fronted sub-clause triggers main-clause V2 inversion; subordinators (att, om, när, innan, medan, sedan, eftersom, därför att, ifall, för att, fast(än), trots att); translating that (att vs. som).',
     culturalTheme: 'Traditional & Modern Swedish Food',
-    available: false,
+    available: true,
   },
   {
     id: 'u19',
