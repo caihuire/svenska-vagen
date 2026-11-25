@@ -60,7 +60,7 @@ export function WordOrderExercise({
           {exercise.prompt}
         </p>
         {exercise.triggerCue && (
-          <div className="inline-block rounded-xl border border-[var(--accent)]/40 bg-[var(--accent)]/12 px-3 py-1.5 text-xs font-bold text-[#8A4F04] dark:text-[var(--accent)]">
+          <div className="inline-block rounded-xl border border-[var(--accent)]/40 bg-[var(--accent)]/12 px-3 py-1.5 text-xs font-bold text-[var(--accent-text)]">
             {exercise.triggerCue}
           </div>
         )}
@@ -71,7 +71,7 @@ export function WordOrderExercise({
           {exercise.slotHints.map((slot, idx) => (
             <span
               key={`${slot}-${idx}`}
-              className={`rounded-lg border px-2 py-0.5 text-[11px] font-semibold ${
+              className={`rounded-lg border px-2 py-0.5 text-micro font-semibold ${
                 idx < selectedIndices.length
                   ? 'border-[var(--brand)]/40 bg-[var(--brand)]/10 text-[var(--brand)]'
                   : 'border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)]'
@@ -144,7 +144,7 @@ export function WordOrderExercise({
           type="button"
           disabled={locked || !allPlaced}
           onClick={handleCheck}
-          className="min-h-[48px] flex-1 rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white transition-opacity hover:opacity-95 disabled:opacity-45 select-none touch-manipulation"
+          className="min-h-[48px] flex-1 rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] transition-opacity hover:opacity-95 disabled:opacity-45 select-none touch-manipulation"
         >
           Check Order
         </button>

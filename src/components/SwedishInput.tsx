@@ -106,7 +106,7 @@ export function SwedishInput({
         autoComplete="off"
         lang="sv"
         enterKeyHint="done"
-        className="w-full min-h-[48px] rounded-xl border-2 border-[var(--border)] bg-[var(--bg-card)] px-3.5 py-2.5 text-[16px] font-medium text-[var(--text-primary)] placeholder:text-[var(--text-muted)]/70 focus:border-[var(--brand)] focus:outline-none disabled:opacity-60"
+        className="w-full min-h-[48px] rounded-xl border-2 border-[var(--border-strong)] bg-[var(--bg-card)] px-3.5 py-2.5 text-[16px] font-medium text-[var(--text-primary)] placeholder:text-[var(--text-muted)]/70 focus:border-[var(--brand)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] disabled:opacity-60"
       />
 
       <div
@@ -153,7 +153,7 @@ export function SwedishInput({
           onPointerDown={keepFocus}
           onMouseDown={keepFocus}
           onClick={onSubmit}
-          className="min-h-[48px] min-w-[88px] flex-[1.6] rounded-xl bg-[var(--brand)] px-3.5 text-sm font-bold text-white transition-opacity hover:opacity-95 active:scale-[0.98] disabled:opacity-50 select-none touch-manipulation"
+          className="min-h-[48px] min-w-[88px] flex-[1.6] rounded-xl bg-[var(--brand)] px-3.5 text-sm font-bold text-[var(--on-brand)] transition-opacity hover:opacity-95 active:scale-[0.98] disabled:opacity-50 select-none touch-manipulation"
         >
           {submitLabel}
         </button>

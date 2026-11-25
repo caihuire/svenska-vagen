@@ -104,7 +104,7 @@ export function PathView() {
     if (tier === 0) return null;
     if (tier === 1) {
       return (
-        <span className="inline-flex items-center gap-1 rounded-full bg-[#B45309]/12 px-2 py-0.5 text-[11px] font-bold text-[#92400E] dark:text-[#FBBF24]">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[var(--text-primary)]/10 px-2 py-0.5 text-micro font-bold text-[var(--text-primary)]">
           <Award className="h-3 w-3" aria-hidden="true" />
           Bronze
         </span>
@@ -112,14 +112,14 @@ export function PathView() {
     }
     if (tier === 2) {
       return (
-        <span className="inline-flex items-center gap-1 rounded-full bg-slate-500/15 px-2 py-0.5 text-[11px] font-bold text-slate-700 dark:text-slate-300">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[var(--brand)]/12 px-2 py-0.5 text-micro font-bold text-[var(--brand)]">
           <Award className="h-3 w-3" aria-hidden="true" />
           Silver
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/18 px-2 py-0.5 text-[11px] font-bold text-[#8A4F04] dark:text-[var(--accent)]">
+      <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/18 px-2 py-0.5 text-micro font-bold text-[var(--accent-text)]">
         <Award className="h-3 w-3" aria-hidden="true" />
         Gold
       </span>
@@ -145,7 +145,7 @@ export function PathView() {
                 className="inline-flex items-center gap-1 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] px-2.5 py-1 text-xs font-bold text-[var(--text-primary)]"
                 aria-label={`${progress.streak} day streak and ${progress.freezes} freeze shields`}
               >
-                <Flame className="h-3.5 w-3.5 text-[var(--accent)]" aria-hidden="true" />
+                <Flame className="h-3.5 w-3.5 text-[var(--accent-text)]" aria-hidden="true" />
                 <span>{progress.streak}d</span>
                 <Shield className="ml-1 h-3.5 w-3.5 text-[var(--brand)]" aria-hidden="true" />
                 <span>{progress.freezes}</span>
@@ -175,7 +175,7 @@ export function PathView() {
               aria-pressed={progress.settings.freeBrowse}
               className={`min-h-[48px] rounded-xl border px-3 text-xs font-bold transition-colors select-none touch-manipulation ${
                 progress.settings.freeBrowse
-                  ? 'border-[var(--brand)] bg-[var(--brand)] text-white'
+                  ? 'border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)]'
                   : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)]'
               }`}
             >
@@ -194,7 +194,7 @@ export function PathView() {
           className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-4 shadow-sm space-y-2.5"
         >
           <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-[var(--text-muted)]">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--accent)]" aria-hidden="true" />
+            <Sparkles className="h-3.5 w-3.5 text-[var(--accent-text)]" aria-hidden="true" />
             <span>Today&apos;s Focus</span>
           </div>
 
@@ -210,7 +210,7 @@ export function PathView() {
             </div>
             <Link
               to={`/unit/${continueUnit.id}`}
-              className="inline-flex min-h-[48px] shrink-0 items-center gap-1 rounded-xl bg-[var(--brand)] px-3.5 text-xs font-bold text-white hover:opacity-95"
+              className="inline-flex min-h-[48px] shrink-0 items-center gap-1 rounded-xl bg-[var(--brand)] px-3.5 text-xs font-bold text-[var(--on-brand)] hover:opacity-95"
             >
               <span>Practice</span>
               <ChevronRight className="h-4 w-4" aria-hidden="true" />
@@ -239,7 +239,7 @@ export function PathView() {
           {weakTags.length > 0 && (
             <div className="flex items-center justify-between gap-3 rounded-xl bg-[var(--accent)]/10 p-3">
               <div className="flex items-center gap-2 min-w-0">
-                <Target className="h-4 w-4 shrink-0 text-[var(--accent)]" aria-hidden="true" />
+                <Target className="h-4 w-4 shrink-0 text-[var(--accent-text)]" aria-hidden="true" />
                 <p className="truncate text-sm font-bold text-[var(--text-primary)]">
                   🎯 Fix weak spots: {weakTags[0].tag} (
                   {Math.round(weakTags[0].accuracy * 100)}%)
@@ -247,7 +247,7 @@ export function PathView() {
               </div>
               <Link
                 to="/drills?category=weak-spots"
-                className="inline-flex min-h-[48px] shrink-0 items-center rounded-xl bg-[var(--accent)] px-3.5 text-xs font-bold text-white"
+                className="inline-flex min-h-[48px] shrink-0 items-center rounded-xl bg-[var(--accent)] px-3.5 text-xs font-bold text-[var(--on-accent)]"
               >
                 Fix
               </Link>
@@ -313,7 +313,7 @@ export function PathView() {
                                   <span className="text-xs font-bold text-[var(--text-muted)]">
                                     Unit {unit.number}
                                   </span>
-                                  <span className="rounded-full bg-[var(--bg-surface)] px-2 py-0.5 text-[10px] font-bold text-[var(--text-muted)]">
+                                  <span className="rounded-full bg-[var(--bg-surface)] px-2 py-0.5 text-micro font-bold text-[var(--text-muted)]">
                                     Preview
                                   </span>
                                 </div>
@@ -348,7 +348,7 @@ export function PathView() {
                                   {tierBadge(mastery.tier)}
                                   {mastery.needsRefresh && (
                                     <span
-                                      className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-[10px] font-bold text-[var(--accent)]"
+                                      className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-micro font-bold text-[var(--accent-text)]"
                                       title="Unreviewed for over 45 days"
                                     >
                                       <span
@@ -368,7 +368,7 @@ export function PathView() {
                                     : unit.grammarFocus}
                                 </p>
                                 {unitProg && (
-                                  <p className="text-[11px] font-semibold text-[var(--text-muted)]">
+                                  <p className="text-micro font-semibold text-[var(--text-muted)]">
                                     Best practice: {unitProg.practiceBestScore}%
                                   </p>
                                 )}

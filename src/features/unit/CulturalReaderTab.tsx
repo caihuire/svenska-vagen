@@ -183,7 +183,7 @@ export function CulturalReaderTab({
             <button
               type="button"
               onClick={handleStopPlayAll}
-              className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--error)] px-4 text-sm font-bold text-white select-none touch-manipulation"
+              className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--error)] px-4 text-sm font-bold text-[var(--on-error)] select-none touch-manipulation"
             >
               <Square className="h-4 w-4 fill-current" aria-hidden="true" />
               <span>Stop</span>
@@ -193,7 +193,7 @@ export function CulturalReaderTab({
               type="button"
               disabled={!ttsSupported}
               onClick={handlePlayAll}
-              className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-white disabled:opacity-50 select-none touch-manipulation"
+              className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-[var(--on-brand)] disabled:opacity-50 select-none touch-manipulation"
             >
               <Play className="h-4 w-4 fill-current" aria-hidden="true" />
               <span>{ttsSupported ? '▶ Play all' : 'Audio unavailable'}</span>
@@ -208,7 +208,7 @@ export function CulturalReaderTab({
             aria-label="Toggle reading speed"
             className={`min-h-[48px] min-w-[48px] rounded-xl border px-3 text-xs font-bold select-none touch-manipulation ${
               playRate === 0.75
-                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent)]'
+                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent-text)]'
                 : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)]'
             } disabled:opacity-50`}
           >
@@ -267,7 +267,7 @@ export function CulturalReaderTab({
                       onClick={() => setActiveToken(token)}
                       className={`inline rounded px-0.5 text-left align-baseline select-none touch-manipulation transition-colors ${
                         isGroupMatch || isExactActive
-                          ? 'bg-[var(--brand)] text-white font-semibold'
+                          ? 'bg-[var(--brand)] text-[var(--on-brand)] font-semibold'
                           : isActiveSentence
                             ? 'bg-[var(--accent)]/20 text-[var(--text-primary)]'
                             : hasAnnotation
@@ -312,7 +312,7 @@ export function CulturalReaderTab({
       <button
         type="button"
         onClick={() => setShowQuiz(true)}
-        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white shadow-sm hover:opacity-95 select-none touch-manipulation"
+        className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] shadow-sm hover:opacity-95 select-none touch-manipulation"
       >
         <BookCheck className="h-5 w-5" aria-hidden="true" />
         <span>
@@ -379,8 +379,8 @@ export function CulturalReaderTab({
                   onClick={() => enrollWords([resolvedEntry.id])}
                   className={`inline-flex min-h-[48px] flex-1 items-center justify-center gap-1.5 rounded-xl border px-4 text-sm font-bold select-none touch-manipulation ${
                     isEnrolled
-                      ? 'border-[var(--success)]/40 bg-[#ECFDF5] text-[var(--success)] dark:bg-[#0D2E22]'
-                      : 'border-[var(--brand)] bg-[var(--brand)] text-white'
+                      ? 'border-[var(--success)]/40 bg-[var(--success-bg)] text-[var(--success)]'
+                      : 'border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)]'
                   }`}
                 >
                   {isEnrolled ? (

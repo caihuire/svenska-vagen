@@ -185,7 +185,7 @@ export function UnitView() {
                   {unit.stage} · Unit {unit.number}
                 </span>
                 {mastery.tier > 0 && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-[11px] font-bold text-[#8A4F04] dark:text-[var(--accent)]">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-micro font-bold text-[var(--accent-text)]">
                     <Award className="h-3 w-3" aria-hidden="true" />
                     {tierLabels[mastery.tier]}
                   </span>
@@ -214,7 +214,7 @@ export function UnitView() {
                   onClick={() => handleSelectTab(key)}
                   className={`flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl border px-2 text-xs font-bold transition-colors select-none touch-manipulation ${
                     selected
-                      ? 'border-[var(--brand)] bg-[var(--brand)] text-white'
+                      ? 'border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)]'
                       : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                   }`}
                 >
@@ -272,7 +272,7 @@ export function UnitView() {
               <button
                 type="button"
                 onClick={() => setPracticeOpen(true)}
-                className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white shadow-sm hover:opacity-95 select-none touch-manipulation"
+                className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] shadow-sm hover:opacity-95 select-none touch-manipulation"
               >
                 {unitProg?.practiceAttempts ? 'Practice Again' : 'Start Practice'}
               </button>

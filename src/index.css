@@ -2,37 +2,128 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Theme: Organic Biophilic x Bauhaus
+ *  - Biophilic: warm paper surfaces, soft generous radii, leaf-green for success only
+ *  - Bauhaus:   geometric type (Jost), primary blue + yellow,
+ *               flat hard-offset shadows, firm borders, no blur/gradients
+ *
+ * Semantic tokens live in :root / .dark. The theme block below maps them (and
+ * radii, shadows, fonts, motion) onto Tailwind utilities so components keep
+ * their class names. Text/surface pairs verified >= 4.5:1, UI borders >= 3:1.
+ */
+
 :root {
-  --bg-surface: #F8F9FA;
-  --bg-card: #FFFFFF;
-  --text-primary: #111827;
-  --text-muted: #4B5563;
-  --brand: #1B4D7E;
-  --accent: #D98A1A;
-  --success: #1E7A56;
-  --error: #C73E3A;
-  --border: #E2E8F0;
+  /* Surfaces & text */
+  --bg-surface: #F5F1E6;
+  --bg-card: #FDFBF4;
+  --text-primary: #17223B;
+  --text-muted: #4A5572;
+
+  /* Brand (Bauhaus blue) */
+  --brand: #1D4E9E;
+  --on-brand: #FFFFFF;
+
+  /* Accent (Bauhaus yellow): --accent-text for text/icons, --on-accent on solid fills */
+  --accent: #F2B705;
+  --on-accent: #17223B;
+  --accent-text: #6B4E00;
+  --accent-bg: #FBEDB5;
+
+  /* Status */
+  --success: #286E2D;
+  --on-success: #FFFFFF;
+  --success-bg: #E1F0DC;
+  --error: #B03320;
+  --on-error: #FFFFFF;
+  --error-bg: #F9E2DE;
+
+  /* Lines, focus, overlays */
+  --border: #D9D3BF;
+  --border-strong: #77809A;
+  --focus-ring: #1D4E9E;
+  --shadow-ink: #17223B;
+  --scrim: rgb(23 34 59 / 0.55);
+  --switch-knob: #FDFBF4;
 }
 
 .dark {
-  --bg-surface: #0F1722;
-  --bg-card: #172233;
-  --text-primary: #F1F5F9;
-  --text-muted: #94A3B8;
-  --brand: #6BA4DC;
-  --accent: #F2B449;
-  --success: #4DC492;
-  --error: #F0716D;
-  --border: #263549;
+  --bg-surface: #0E1526;
+  --bg-card: #172238;
+  --text-primary: #EEF1F8;
+  --text-muted: #A3AFC6;
+
+  --brand: #7BA7F2;
+  --on-brand: #08122A;
+
+  --accent: #F7C531;
+  --on-accent: #1A1400;
+  --accent-text: #F7C531;
+  --accent-bg: #332A0A;
+
+  --success: #8AD08A;
+  --on-success: #0A1C0C;
+  --success-bg: #15301A;
+  --error: #F4917D;
+  --on-error: #2A0D07;
+  --error-bg: #3A1E1A;
+
+  --border: #2A3A5A;
+  --border-strong: #7686A6;
+  --focus-ring: #7BA7F2;
+  --shadow-ink: #04070F;
+  --scrim: rgb(0 0 0 / 0.65);
+  --switch-knob: #EEF1F8;
+}
+
+@theme {
+  /* Typography: geometric display + humanist body */
+  --font-sans: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --text-micro: 0.6875rem; /* 11px; replaces ad-hoc text-[10px]/[11px] */
+  --text-micro--line-height: 1rem;
+
+  /* Radii: soft/organic scale */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
+
+  /* Elevation: flat hard-offset Bauhaus shadows (no blur) */
+  --shadow-sm: 2px 2px 0 0 var(--shadow-ink);
+  --shadow-md: 3px 3px 0 0 var(--shadow-ink);
+  --shadow-lg: 4px 4px 0 0 var(--shadow-ink);
+  --shadow-xl: 6px 6px 0 0 var(--shadow-ink);
+  --shadow-2xl: 8px 8px 0 0 var(--shadow-ink);
+  --shadow: 2px 2px 0 0 var(--shadow-ink);
+
+  /* Motion */
+  --default-transition-duration: 180ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html,
 body {
   background-color: var(--bg-surface);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Keyboard focus: visible 3px ring on every interactive element */
+:where(a, button, input, select, textarea, summary, [role="button"], [role="tab"], [role="switch"], [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 /* Safe-area helpers for notched mobile viewports */

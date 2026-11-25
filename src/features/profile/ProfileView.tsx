@@ -158,7 +158,7 @@ export function ProfileView() {
               <p className="text-xs font-semibold text-[var(--text-muted)]">
                 Streak / Freezes
               </p>
-              <p className="text-xl font-extrabold text-[var(--accent)]">
+              <p className="text-xl font-extrabold text-[var(--accent-text)]">
                 {progress.streak}d · {progress.freezes}/2
               </p>
             </div>
@@ -185,7 +185,7 @@ export function ProfileView() {
               {weakTags.map((w) => (
                 <span
                   key={w.tag}
-                  className="rounded-full bg-[var(--accent)]/15 px-2.5 py-0.5 text-xs font-semibold text-[#8A4F04] dark:text-[var(--accent)]"
+                  className="rounded-full bg-[var(--accent)]/15 px-2.5 py-0.5 text-xs font-semibold text-[var(--accent-text)]"
                 >
                   {w.tag}: {Math.round(w.accuracy * 100)}%
                 </span>
@@ -216,7 +216,7 @@ export function ProfileView() {
                   aria-pressed={progress.settings.dailyXpGoal === goal}
                   className={`min-h-[48px] rounded-xl border text-sm font-bold select-none touch-manipulation ${
                     progress.settings.dailyXpGoal === goal
-                      ? 'border-[var(--brand)] bg-[var(--brand)] text-white'
+                      ? 'border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)]'
                       : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)]'
                   }`}
                 >
@@ -252,7 +252,7 @@ export function ProfileView() {
                     aria-pressed={active}
                     className={`min-h-[48px] rounded-xl border text-xs font-bold select-none touch-manipulation ${
                       active
-                        ? 'border-[var(--brand)] bg-[var(--brand)] text-white'
+                        ? 'border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)]'
                         : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-primary)]'
                     }`}
                   >
@@ -305,7 +305,7 @@ export function ProfileView() {
                   }`}
                 >
                   <span
-                    className={`h-5 w-5 rounded-full bg-white shadow transition-transform ${
+                    className={`h-5 w-5 rounded-full bg-[var(--switch-knob)] shadow transition-transform ${
                       item.value ? 'translate-x-5' : 'translate-x-0'
                     }`}
                   />
@@ -333,7 +333,7 @@ export function ProfileView() {
             <button
               type="button"
               onClick={() => void handleGenerateCopyCode()}
-              className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-3 text-xs font-bold text-white select-none touch-manipulation"
+              className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-3 text-xs font-bold text-[var(--on-brand)] select-none touch-manipulation"
             >
               {copied ? (
                 <>
@@ -434,7 +434,7 @@ export function ProfileView() {
         {syncError && (
           <div
             role="alert"
-            className="rounded-xl border border-[var(--error)]/40 bg-[#FEF2F2] p-3 text-sm font-semibold text-[var(--error)] dark:bg-[#331414]"
+            className="rounded-xl border border-[var(--error)]/40 bg-[var(--error-bg)] p-3 text-sm font-semibold text-[var(--error)] "
           >
             {syncError}
           </div>
@@ -443,7 +443,7 @@ export function ProfileView() {
         {syncSuccess && (
           <div
             role="status"
-            className="rounded-xl border border-[var(--success)]/40 bg-[#ECFDF5] p-3 text-sm font-semibold text-[var(--success)] dark:bg-[#0D2E22]"
+            className="rounded-xl border border-[var(--success)]/40 bg-[var(--success-bg)] p-3 text-sm font-semibold text-[var(--success)]"
           >
             {syncSuccess}
           </div>
@@ -477,7 +477,7 @@ export function ProfileView() {
               <button
                 type="button"
                 onClick={handleConfirmMerge}
-                className="min-h-[48px] flex-1 rounded-xl bg-[var(--brand)] text-sm font-bold text-white"
+                className="min-h-[48px] flex-1 rounded-xl bg-[var(--brand)] text-sm font-bold text-[var(--on-brand)]"
               >
                 Confirm &amp; Merge
               </button>
@@ -494,7 +494,7 @@ export function ProfileView() {
             <button
               type="button"
               onClick={() => setConfirmReset(true)}
-              className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--error)]/40 bg-[#FEF2F2] px-4 text-sm font-bold text-[var(--error)] dark:bg-[#331414]"
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-1.5 rounded-xl border border-[var(--error)]/40 bg-[var(--error-bg)] px-4 text-sm font-bold text-[var(--error)] "
             >
               <Trash2 className="h-4 w-4" aria-hidden="true" />
               <span>Reset All Progress</span>
@@ -519,7 +519,7 @@ export function ProfileView() {
                     setConfirmReset(false);
                     setGeneratedCode(null);
                   }}
-                  className="min-h-[48px] flex-1 rounded-xl bg-[var(--error)] text-sm font-bold text-white"
+                  className="min-h-[48px] flex-1 rounded-xl bg-[var(--error)] text-sm font-bold text-[var(--on-error)]"
                 >
                   Confirm Reset
                 </button>

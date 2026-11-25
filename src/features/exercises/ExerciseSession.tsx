@@ -183,7 +183,7 @@ export function ExerciseSession({
         <button
           type="button"
           onClick={onExit}
-          className="mt-4 min-h-[48px] rounded-xl bg-[var(--brand)] px-6 text-sm font-bold text-white"
+          className="mt-4 min-h-[48px] rounded-xl bg-[var(--brand)] px-6 text-sm font-bold text-[var(--on-brand)]"
         >
           Back
         </button>
@@ -199,7 +199,7 @@ export function ExerciseSession({
     return (
       <div className="fixed inset-0 z-40 flex min-h-dvh flex-col items-center justify-center overflow-y-auto bg-[var(--bg-surface)] p-6">
         <div className="w-full max-w-md rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] p-6 text-center shadow-md space-y-5">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--accent)]/15 text-[var(--accent)]">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--accent)]/15 text-[var(--accent-text)]">
             <Award className="h-9 w-9" aria-hidden="true" />
           </div>
           <div className="space-y-1">
@@ -224,7 +224,7 @@ export function ExerciseSession({
             </div>
             <div className="rounded-2xl bg-[var(--bg-surface)] p-3">
               <p className="text-xs font-semibold text-[var(--text-muted)]">XP</p>
-              <p className="mt-0.5 text-xl font-extrabold text-[var(--accent)]">
+              <p className="mt-0.5 text-xl font-extrabold text-[var(--accent-text)]">
                 +{xpEarned}
               </p>
             </div>
@@ -236,7 +236,7 @@ export function ExerciseSession({
               ttsService.stop();
               onExit();
             }}
-            className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white transition-opacity hover:opacity-95 select-none touch-manipulation"
+            className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] transition-opacity hover:opacity-95 select-none touch-manipulation"
           >
             Done
           </button>
@@ -283,7 +283,7 @@ export function ExerciseSession({
             aria-label={muted ? "Turn audio back on" : "Can't listen now"}
             className={`inline-flex min-h-[48px] min-w-[48px] shrink-0 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-xs font-bold transition-colors select-none touch-manipulation ${
               muted
-                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent)]'
+                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent-text)]'
                 : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)]'
             }`}
           >
@@ -398,7 +398,7 @@ export function ExerciseSession({
           role="dialog"
           aria-modal="true"
           aria-label="Confirm exit session"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--scrim)] p-4"
         >
           <div className="w-full max-w-sm rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-xl space-y-4">
             <h3 className="text-lg font-bold text-[var(--text-primary)]">
@@ -421,7 +421,7 @@ export function ExerciseSession({
                   ttsService.stop();
                   onExit();
                 }}
-                className="min-h-[48px] flex-1 rounded-xl bg-[var(--error)] px-4 text-sm font-bold text-white"
+                className="min-h-[48px] flex-1 rounded-xl bg-[var(--error)] px-4 text-sm font-bold text-[var(--on-error)]"
               >
                 Leave
               </button>

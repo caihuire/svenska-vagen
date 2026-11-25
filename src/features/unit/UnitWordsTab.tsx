@@ -47,8 +47,8 @@ export function UnitWordsTab({ unit, lexMap }: UnitWordsTabProps) {
           onClick={() => enrollWords(unenrolledIds)}
           className={`inline-flex min-h-[48px] items-center gap-1.5 rounded-xl px-4 text-sm font-bold select-none touch-manipulation ${
             unenrolledIds.length === 0
-              ? 'border border-[var(--success)]/40 bg-[#ECFDF5] text-[var(--success)] dark:bg-[#0D2E22]'
-              : 'bg-[var(--brand)] text-white hover:opacity-95'
+              ? 'border border-[var(--success)]/40 bg-[var(--success-bg)] text-[var(--success)]'
+              : 'bg-[var(--brand)] text-[var(--on-brand)] hover:opacity-95'
           }`}
         >
           {unenrolledIds.length === 0 ? (
@@ -83,7 +83,7 @@ export function UnitWordsTab({ unit, lexMap }: UnitWordsTabProps) {
                     {entry.morph?.pos === 'noun' && (
                       <GenderBadge gender={entry.morph.gender} />
                     )}
-                    <span className="rounded-md bg-[var(--bg-surface)] px-2 py-0.5 text-[11px] font-semibold text-[var(--text-muted)]">
+                    <span className="rounded-md bg-[var(--bg-surface)] px-2 py-0.5 text-micro font-semibold text-[var(--text-muted)]">
                       {entry.pos}
                     </span>
                   </div>
@@ -111,8 +111,8 @@ export function UnitWordsTab({ unit, lexMap }: UnitWordsTabProps) {
                     aria-label={enrolled ? `${entry.lemma} is in SRS` : `Add ${entry.lemma} to SRS`}
                     className={`inline-flex min-h-[48px] min-w-[48px] items-center justify-center gap-1 rounded-xl border px-3 text-xs font-bold select-none touch-manipulation ${
                       enrolled
-                        ? 'border-[var(--success)]/40 bg-[#ECFDF5] text-[var(--success)] dark:bg-[#0D2E22]'
-                        : 'border-[var(--brand)]/40 bg-[var(--brand)]/10 text-[var(--brand)] hover:bg-[var(--brand)] hover:text-white'
+                        ? 'border-[var(--success)]/40 bg-[var(--success-bg)] text-[var(--success)]'
+                        : 'border-[var(--brand)]/40 bg-[var(--brand)]/10 text-[var(--brand)] hover:bg-[var(--brand)] hover:text-[var(--on-brand)]'
                     }`}
                   >
                     {enrolled ? (

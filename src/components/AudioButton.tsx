@@ -74,7 +74,7 @@ export function AudioButton({
           disabled
             ? 'cursor-not-allowed border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)] opacity-60'
             : activePulse
-              ? 'animate-pulse border-[var(--brand)] bg-[var(--brand)] text-white shadow-sm'
+              ? 'animate-pulse border-[var(--brand)] bg-[var(--brand)] text-[var(--on-brand)] shadow-sm'
               : 'border-[var(--border)] bg-[var(--bg-card)] text-[var(--brand)] hover:border-[var(--brand)] active:scale-[0.98]'
         }`}
       >
@@ -100,7 +100,7 @@ export function AudioButton({
             !supported || muted
               ? 'cursor-not-allowed border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)] opacity-60'
               : rate === 0.75
-                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent)]'
+                ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent-text)]'
                 : 'border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)] hover:border-[var(--brand)]'
           }`}
         >

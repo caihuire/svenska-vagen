@@ -23,7 +23,7 @@ const KIND_LABELS: Record<GrammarCard['kind'], { label: string; style: string }>
   },
   trap: {
     label: 'English Trap',
-    style: 'bg-[var(--accent)]/15 text-[#8A4F04] dark:text-[var(--accent)]',
+    style: 'bg-[var(--accent)]/15 text-[var(--accent-text)]',
   },
 };
 
@@ -176,7 +176,7 @@ export function LearnTab({ cards, onStartPractice }: LearnTabProps) {
                   </p>
                   <p className="text-xs text-[var(--text-muted)]">{ex.en}</p>
                   {ex.note && (
-                    <p className="text-[11px] font-medium text-[var(--brand)]">
+                    <p className="text-micro font-medium text-[var(--brand)]">
                       {ex.note}
                     </p>
                   )}
@@ -209,7 +209,7 @@ export function LearnTab({ cards, onStartPractice }: LearnTabProps) {
           <button
             type="button"
             onClick={onStartPractice}
-            className="inline-flex min-h-[48px] flex-[1.4] items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-white hover:opacity-95 select-none touch-manipulation"
+            className="inline-flex min-h-[48px] flex-[1.4] items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-[var(--on-brand)] hover:opacity-95 select-none touch-manipulation"
           >
             <span>Start Practice</span>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
@@ -218,7 +218,7 @@ export function LearnTab({ cards, onStartPractice }: LearnTabProps) {
           <button
             type="button"
             onClick={() => setIndex((prev) => Math.min(cards.length - 1, prev + 1))}
-            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-white hover:opacity-95 select-none touch-manipulation"
+            className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-1.5 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-[var(--on-brand)] hover:opacity-95 select-none touch-manipulation"
           >
             <span>Next</span>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />

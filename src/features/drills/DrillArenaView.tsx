@@ -197,7 +197,7 @@ export function DrillArenaView() {
                   aria-pressed={sessionLength === len}
                   className={`min-h-[48px] min-w-[64px] rounded-xl px-3 text-sm font-bold transition-colors select-none touch-manipulation ${
                     sessionLength === len
-                      ? 'bg-[var(--brand)] text-white'
+                      ? 'bg-[var(--brand)] text-[var(--on-brand)]'
                       : 'border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)]'
                   }`}
                 >
@@ -211,7 +211,7 @@ export function DrillArenaView() {
 
       <main className="mx-auto max-w-lg px-4 py-4 space-y-2.5">
         {error && (
-          <div className="rounded-xl border border-[var(--error)]/40 bg-[#FEF2F2] p-3 text-sm font-semibold text-[var(--error)] dark:bg-[#331414]">
+          <div className="rounded-xl border border-[var(--error)]/40 bg-[var(--error-bg)] p-3 text-sm font-semibold text-[var(--error)] ">
             {error}
           </div>
         )}
@@ -232,7 +232,7 @@ export function DrillArenaView() {
                 <div className="flex items-center gap-2">
                   {isWeak && (
                     <Target
-                      className="h-4 w-4 shrink-0 text-[var(--accent)]"
+                      className="h-4 w-4 shrink-0 text-[var(--accent-text)]"
                       aria-hidden="true"
                     />
                   )}
@@ -240,7 +240,7 @@ export function DrillArenaView() {
                     {cat.title}
                   </span>
                   {isWeak && weakTags.length > 0 && (
-                    <span className="rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-[11px] font-bold text-[#8A4F04] dark:text-[var(--accent)]">
+                    <span className="rounded-full bg-[var(--accent)]/15 px-2 py-0.5 text-micro font-bold text-[var(--accent-text)]">
                       {weakTags.length} weak
                     </span>
                   )}

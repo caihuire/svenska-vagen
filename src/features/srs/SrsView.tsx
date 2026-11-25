@@ -149,7 +149,7 @@ export function SrsView() {
                 ttsService.stop();
                 setSessionQueue(null);
               }}
-              className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white"
+              className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)]"
             >
               Back to Vocab
             </button>
@@ -262,7 +262,7 @@ export function SrsView() {
                   {!revealed && (
                     <div className="space-y-2">
                       {productionEval === 'diacritic-retry' && (
-                        <p className="rounded-xl bg-[var(--accent)]/15 px-3 py-2 text-center text-xs font-bold text-[#8A4F04] dark:text-[var(--accent)]">
+                        <p className="rounded-xl bg-[var(--accent)]/15 px-3 py-2 text-center text-xs font-bold text-[var(--accent-text)]">
                           Almost! Check å/ä/ö and try once more.
                         </p>
                       )}
@@ -335,7 +335,7 @@ export function SrsView() {
                     <button
                       type="button"
                       onClick={() => setRevealed(true)}
-                      className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white select-none touch-manipulation"
+                      className="min-h-[48px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] select-none touch-manipulation"
                     >
                       Show Answer
                     </button>
@@ -379,10 +379,10 @@ export function SrsView() {
               <button
                 type="button"
                 onClick={() => handleGrade('again')}
-                className="flex min-h-[52px] flex-col items-center justify-center rounded-xl border border-[var(--error)]/40 bg-[#FEF2F2] px-2 py-1.5 text-[var(--error)] dark:bg-[#331414] select-none touch-manipulation"
+                className="flex min-h-[52px] flex-col items-center justify-center rounded-xl border border-[var(--error)]/40 bg-[var(--error-bg)] px-2 py-1.5 text-[var(--error)]  select-none touch-manipulation"
               >
                 <span className="text-sm font-extrabold">Again</span>
-                <span className="text-[11px] font-semibold">
+                <span className="text-micro font-semibold">
                   {formatIntervalLabel(currentCard, 'again', nowMs)}
                 </span>
               </button>
@@ -393,7 +393,7 @@ export function SrsView() {
                 className="flex min-h-[52px] flex-col items-center justify-center rounded-xl border border-[var(--brand)]/40 bg-[var(--brand)]/10 px-2 py-1.5 text-[var(--brand)] select-none touch-manipulation"
               >
                 <span className="text-sm font-extrabold">Good</span>
-                <span className="text-[11px] font-semibold">
+                <span className="text-micro font-semibold">
                   {formatIntervalLabel(currentCard, 'good', nowMs)}
                 </span>
               </button>
@@ -401,10 +401,10 @@ export function SrsView() {
               <button
                 type="button"
                 onClick={() => handleGrade('easy')}
-                className="flex min-h-[52px] flex-col items-center justify-center rounded-xl border border-[var(--success)]/40 bg-[#ECFDF5] px-2 py-1.5 text-[var(--success)] dark:bg-[#0D2E22] select-none touch-manipulation"
+                className="flex min-h-[52px] flex-col items-center justify-center rounded-xl border border-[var(--success)]/40 bg-[var(--success-bg)] px-2 py-1.5 text-[var(--success)] select-none touch-manipulation"
               >
                 <span className="text-sm font-extrabold">Easy</span>
-                <span className="text-[11px] font-semibold">
+                <span className="text-micro font-semibold">
                   {formatIntervalLabel(currentCard, 'easy', nowMs)}
                 </span>
               </button>
@@ -470,7 +470,7 @@ export function SrsView() {
 
         {stats.total === 0 ? (
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-5 shadow-sm space-y-3 text-center">
-            <Sparkles className="mx-auto h-8 w-8 text-[var(--accent)]" aria-hidden="true" />
+            <Sparkles className="mx-auto h-8 w-8 text-[var(--accent-text)]" aria-hidden="true" />
             <h2 className="text-base font-extrabold text-[var(--text-primary)]">
               Start your Swedish deck
             </h2>
@@ -480,7 +480,7 @@ export function SrsView() {
             <button
               type="button"
               onClick={() => void handleQueueStarterUnit()}
-              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-white"
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-[var(--brand)] px-4 text-sm font-bold text-[var(--on-brand)]"
             >
               <Plus className="h-4 w-4" aria-hidden="true" />
               <span>Queue Unit 1 Words</span>
@@ -491,7 +491,7 @@ export function SrsView() {
             type="button"
             disabled={dueQueue.length === 0}
             onClick={handleStartSession}
-            className="min-h-[52px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-white shadow-sm hover:opacity-95 disabled:opacity-50 select-none touch-manipulation"
+            className="min-h-[52px] w-full rounded-xl bg-[var(--brand)] px-4 text-base font-bold text-[var(--on-brand)] shadow-sm hover:opacity-95 disabled:opacity-50 select-none touch-manipulation"
           >
             {dueQueue.length > 0
               ? `Start Review (${dueQueue.length} due)`
@@ -523,7 +523,7 @@ export function SrsView() {
                             <GenderBadge gender={entry.morph.gender} />
                           )}
                           {isLeechCard(card) && (
-                            <span className="rounded-full bg-[var(--error)]/15 px-1.5 py-0.5 text-[10px] font-bold text-[var(--error)]">
+                            <span className="rounded-full bg-[var(--error)]/15 px-1.5 py-0.5 text-micro font-bold text-[var(--error)]">
                               Svår
                             </span>
                           )}

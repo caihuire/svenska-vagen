@@ -26,22 +26,22 @@ export function FeedbackBanner({
   const isRetry = status === 'diacritic-retry';
 
   const containerStyle = isCorrect
-    ? 'border-[var(--success)]/40 bg-[#ECFDF5] dark:bg-[#0D2E22]'
+    ? 'border-[var(--success)]/40 bg-[var(--success-bg)]'
     : isRetry
-      ? 'border-[var(--accent)]/50 bg-[#FFFBEB] dark:bg-[#31230B]'
-      : 'border-[var(--error)]/40 bg-[#FEF2F2] dark:bg-[#331414]';
+      ? 'border-[var(--accent)]/50 bg-[var(--accent-bg)]'
+      : 'border-[var(--error)]/40 bg-[var(--error-bg)]';
 
   const headingColor = isCorrect
     ? 'text-[var(--success)]'
     : isRetry
-      ? 'text-[var(--accent)]'
+      ? 'text-[var(--accent-text)]'
       : 'text-[var(--error)]';
 
   const buttonBg = isCorrect
-    ? 'bg-[var(--success)] text-white'
+    ? 'bg-[var(--success)] text-[var(--on-success)]'
     : isRetry
-      ? 'bg-[var(--accent)] text-white'
-      : 'bg-[var(--error)] text-white';
+      ? 'bg-[var(--accent)] text-[var(--on-accent)]'
+      : 'bg-[var(--error)] text-[var(--on-error)]';
 
   const title = isCorrect
     ? 'Correct!'

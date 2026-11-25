@@ -107,10 +107,10 @@ export function ClozeExercise({
             if (locked) {
               if (isCorrectChoice) {
                 btnStyle =
-                  'border-[var(--success)] bg-[#ECFDF5] text-[var(--success)] dark:bg-[#0D2E22]';
+                  'border-[var(--success)] bg-[var(--success-bg)] text-[var(--success)]';
               } else if (isChosen) {
                 btnStyle =
-                  'border-[var(--error)] bg-[#FEF2F2] text-[var(--error)] dark:bg-[#331414]';
+                  'border-[var(--error)] bg-[var(--error-bg)] text-[var(--error)] ';
               } else {
                 btnStyle =
                   'border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-muted)] opacity-60';
