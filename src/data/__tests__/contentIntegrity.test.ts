@@ -63,9 +63,7 @@ describe('Content Integrity Gate', () => {
     }
   });
 
-  it('provides explicit forms overrides and valid non-empty inflections for all Stage A1 nouns, verbs, and adjectives', async () => {
-    const entries: LexiconEntry[] = await loadStageLexicon('A1');
-
+  const assertInflectable = (entries: LexiconEntry[]): void => {
     for (const entry of entries) {
       if (entry.pos === 'noun') {
         expect(entry.morph?.pos).toBe('noun');
@@ -109,6 +107,39 @@ describe('Content Integrity Gate', () => {
         expect(inflected.plDef.length).toBeGreaterThan(0);
       }
     }
+  };
+
+  it('provides explicit forms overrides and valid non-empty inflections for all Stage A1 nouns, verbs, and adjectives', async () => {
+    const entries: LexiconEntry[] = await loadStageLexicon('A1');
+    expect(entries.length).toBeGreaterThan(0);
+    assertInflectable(entries);
+  });
+
+  it('Stage A2 lexicon has unique, well-formed entries', async () => {
+    const a2: LexiconEntry[] = await loadStageLexicon('A2');
+    if (a2.length === 0) return;
+
+    const a1Ids = new Set((await loadStageLexicon('A1')).map((e) => e.id));
+    const a2UnitIds = new Set(Array.from({ length: 12 }, (_, i) => `u${i + 14}`));
+    const seenIds = new Set<string>();
+    for (const entry of a2) {
+      expect(seenIds.has(entry.id)).toBe(false);
+      seenIds.add(entry.id);
+      expect(a1Ids.has(entry.id)).toBe(false);
+      expect(entry.stage).toBe('A2');
+      expect(a2UnitIds.has(entry.unitId)).toBe(true);
+      expect(entry.example?.sv.trim().length).toBeGreaterThan(0);
+      expect(entry.example?.en.trim().length).toBeGreaterThan(0);
+      expect(entry.ipa?.trim().length).toBeGreaterThan(0);
+    }
+    assertInflectable(a2);
+  });
+
+  // TODO(Task 14): enable and pin the exact STAGE_A2_LEXICON.length.
+  it.skip('A2 lexicon totals', async () => {
+    const a2 = await loadStageLexicon('A2');
+    expect(a2.length).toBeGreaterThanOrEqual(330);
+    expect(a2.length).toBeLessThanOrEqual(400);
   });
 
   it('loads all available units (u01-u13) with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
