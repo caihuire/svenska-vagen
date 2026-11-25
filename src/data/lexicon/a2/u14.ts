@@ -188,8 +188,8 @@ export const U14_LEXICON: LexiconEntry[] = [
     tags: ['instruments', 'article-usage'],
   }),
   noun({
-    lemma: 'bio', en: 'cinema', ipa: '/ˈbiːʊ/', gender: 'en', declension: 4,
-    defSg: 'bion', indefPl: 'bior', defPl: 'biorna',
+    lemma: 'bio', en: 'cinema', ipa: '/ˈbiːʊ/', gender: 'en', declension: 3,
+    defSg: 'bion', indefPl: 'biografer', defPl: 'biograferna',
     example: { sv: 'Vi går på bio varje fredag.', en: 'We go to the cinema every Friday.' },
     tags: ['places', 'institutions'],
   }),
