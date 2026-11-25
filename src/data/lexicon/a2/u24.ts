@@ -189,7 +189,7 @@ export const U24_LEXICON: LexiconEntry[] = [
   }),
   verb({
     lemma: 'patentera', group: '1', en: 'to patent', ipa: '/patɛnˈteːra/',
-    example: { sv: 'Han patenterade sin uppfinning år 1888.', en: 'He patented his invention in the 1800s.' },
+    example: { sv: 'Han patenterade sin uppfinning på 1800-talet.', en: 'He patented his invention in the 1800s.' },
     tags: ['group-1', 'invention'],
     forms: { inf: 'patentera', imp: 'patentera', pres: 'patenterar', past: 'patenterade', supine: 'patenterat' },
   }),
