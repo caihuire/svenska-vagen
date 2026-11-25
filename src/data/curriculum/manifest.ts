@@ -212,7 +212,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Adjective vs. adverb (-t neuter vs. manner adverb); -ligen/-tvis adverbs; non-derived time/manner/place adverbs; adverb comparison (fort/fortare/fortast, gärna/hellre/helst, bra/bättre/bäst, dåligt/sämre vs. värre).',
     culturalTheme: 'English Influence on Swedish',
-    available: false,
+    available: true,
   },
   {
     id: 'u22',
