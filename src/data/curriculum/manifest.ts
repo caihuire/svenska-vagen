@@ -162,7 +162,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Double definiteness Type 1 (den nya chefen, det gamla huset, de stora frågorna); -e masculine/past-participle/superlative definite ending; Type 2 after genitive/possessive/denna/samma/nästa (no end article on noun).',
     culturalTheme: 'The Bernadotte Dynasty',
-    available: false,
+    available: true,
   },
   {
     id: 'u17',
