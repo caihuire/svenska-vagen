@@ -76,7 +76,7 @@ export const u20: UnitContent = {
       id: 'u20-card-4',
       kind: 'trap',
       title: 'English Traps with Strong Verbs',
-      body: 'English has strong verbs too (drink, drank, drunk; sing, sang, sung), so the idea is familiar, and several Swedish verbs even look similar (drick, drack, druckit). But English often uses the same form for the past and the participle ("took", "has taken" differ, while "found", "has found" do not), and learners carry that habit over: Swedish keeps past and supine separate in these verbs. Do not add the weak ending to a strong stem: write drev, not *drivde; steg, not *stigde; tog, not *tagade. Do not use the past after har (*har tog) or the supine as a past (*Hon tagit bussen). The same stem vowel does not mean the same series: bita (past bet) is i-e-i, but binda (past band) is i-a-u. Finally, some verbs are weak in English but strong in Swedish, such as ljuga (ljög, ljugit), so check each verb.',
+      body: 'English has strong verbs too (drink, drank, drunk; sing, sang, sung), so the idea is familiar, and several Swedish verbs even look similar (drick, drack, druckit). But some English verbs, such as "find", use one form for both the past and the participle ("found", "has found"), and learners carry that habit over: Swedish keeps past and supine separate in these verbs. Do not add the weak ending to a strong stem: write drev, not *drivde; steg, not *stigde; tog, not *tagade. Do not use the past after har (*har tog) or the supine as a past (*Hon tagit bussen). The same stem vowel does not mean the same series: bita (past bet) is i-e-i, but binda (past band) is i-a-u. Finally, some verbs are weak in English but strong in Swedish, such as ljuga (ljög, ljugit), so check each verb.',
       highlight: 'drev (not *drivde)  ·  har tagit (not *har tog)  ·  bet  ·  band',
     },
   ],
@@ -337,8 +337,11 @@ export const u20: UnitContent = {
       slotHints: ['Subject', 'Verb', 'Object', 'Adverb'],
       chunks: ['hon', 'bar', 'en tung väska', 'hem'],
       correctOrder: ['hon', 'bar', 'en tung väska', 'hem'],
-      acceptedOrders: [['en tung väska', 'bar', 'hon', 'hem']],
-      explanation: 'The finite verb bar is second. Hem (home) goes after the object. The object en tung väska can also be fronted for emphasis, and then the subject follows the verb.',
+      acceptedOrders: [
+        ['en tung väska', 'bar', 'hon', 'hem'],
+        ['hon', 'bar', 'hem', 'en tung väska'],
+      ],
+      explanation: 'The finite verb bar is second. Hem (home) usually goes after the object, but it can also come before it (hon bar hem en tung väska). The object en tung väska can also be fronted for emphasis, and then the subject follows the verb.',
       ttsText: 'Hon bar en tung väska hem.',
     },
     {
