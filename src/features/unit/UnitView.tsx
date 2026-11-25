@@ -4,7 +4,7 @@ import { ArrowLeft, Award, BookOpen, Dumbbell, FileText, Layers, Lock } from 'lu
 import { IosInstallBanner } from '../../components/IosInstallBanner';
 import { CURRICULUM_MANIFEST } from '../../data/curriculum/manifest';
 import { isUnitLoadable, loadUnit } from '../../data/curriculum/loader';
-import { getA1LexiconMap } from '../../data/lexicon/index';
+import { getLexiconMap } from '../../data/lexicon/index';
 import { computeUnitMastery } from '../../engine/mastery/tracker';
 import { useApp } from '../../store/AppContext';
 import type { LexiconEntry, UnitContent } from '../../types/index';
@@ -60,7 +60,7 @@ export function UnitView() {
     }
 
     setLoading(true);
-    Promise.all([loadUnit(unitId), getA1LexiconMap()])
+    Promise.all([loadUnit(unitId), getLexiconMap()])
       .then(([loadedUnit, loadedLexMap]) => {
         if (cancelled) return;
         setUnit(loadedUnit);

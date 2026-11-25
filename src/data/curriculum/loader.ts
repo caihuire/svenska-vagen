@@ -23,7 +23,7 @@ export function isUnitLoadable(id: string): boolean {
 export async function loadUnit(id: string): Promise<UnitContent> {
   const loader = UNIT_LOADERS[id];
   if (!loader) {
-    throw new Error(`Unit "${id}" is not available in Wave 1.`);
+    throw new Error(`Unit "${id}" is not available yet.`);
   }
   return loader();
 }

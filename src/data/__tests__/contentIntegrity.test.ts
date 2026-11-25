@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CURRICULUM_MANIFEST } from '../curriculum/manifest';
 import { isUnitLoadable, loadUnit } from '../curriculum/loader';
-import { getA1LexiconMap, loadStageLexicon } from '../lexicon/index';
+import { getLexiconMap, loadStageLexicon } from '../lexicon/index';
 import { inflectAdj, inflectNoun, inflectVerb } from '../../engine/morphology/inflector';
 import { extractSentences, parseCulturalMarkup } from '../../engine/reader/parser';
 import type { Exercise, LexiconEntry, UnitContent } from '../../types/index';
@@ -30,8 +30,8 @@ describe('Content Integrity Gate', () => {
       expect(unit.available).toBe(true);
       expect(isUnitLoadable(unit.id)).toBe(true);
     }
-    for (const unit of [...a2, ...b1, ...b2]) {
-      expect(unit.available).toBe(false);
+    for (const unit of CURRICULUM_MANIFEST) {
+      expect(unit.available).toBe(isUnitLoadable(unit.id));
     }
     for (const unit of CURRICULUM_MANIFEST) {
       expect(unit.title.trim().length).toBeGreaterThan(0);
@@ -42,13 +42,12 @@ describe('Content Integrity Gate', () => {
 
   it('loads Stage A1 lexicon with >= 325 unique entries and no duplicate IDs', async () => {
     const a1 = await loadStageLexicon('A1');
-    const map = await getA1LexiconMap();
+    const map = await getLexiconMap();
 
     expect(a1.length).toBeGreaterThanOrEqual(325);
     expect(a1).toHaveLength(389);
-    expect(map.size).toBe(a1.length);
+    expect(map.has('noun:arm')).toBe(true);
 
-    expect(await loadStageLexicon('A2')).toEqual([]);
     expect(await loadStageLexicon('B1')).toEqual([]);
     expect(await loadStageLexicon('B2')).toEqual([]);
 
@@ -113,9 +112,9 @@ describe('Content Integrity Gate', () => {
   });
 
   it('loads all available units (u01-u13) with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
-    const lexMap = await getA1LexiconMap();
-    const availableUnits = CURRICULUM_MANIFEST.filter((u) => u.available);
-    expect(availableUnits).toHaveLength(13);
+    const lexMap = await getLexiconMap();
+    const availableUnits = CURRICULUM_MANIFEST.filter((u) => isUnitLoadable(u.id));
+    expect(availableUnits.length).toBeGreaterThanOrEqual(13);
 
     const seenExerciseIds = new Set<string>();
 

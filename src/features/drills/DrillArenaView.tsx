@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, Dumbbell, Target } from 'lucide-react';
 import { CURRICULUM_MANIFEST } from '../../data/curriculum/manifest';
 import { loadUnit } from '../../data/curriculum/loader';
-import { loadStageLexicon } from '../../data/lexicon/index';
+import { loadAllLexicon } from '../../data/lexicon/index';
 import { generateMorphologyDrills } from '../../engine/drills/generator';
 import { getWeakGrammarTags } from '../../engine/mastery/tracker';
 import { useApp } from '../../store/AppContext';
@@ -82,7 +82,7 @@ export function DrillArenaView() {
     setError(null);
     setLoadingCategory(category);
     try {
-      const a1Lexicon = await loadStageLexicon('A1');
+      const lexicon = await loadAllLexicon();
       let exercises: Exercise[] = [];
 
       if (category === 'word-order') {
@@ -97,7 +97,7 @@ export function DrillArenaView() {
         if (exercises.length < sessionLength) {
           const extra = generateMorphologyDrills(
             'word-order',
-            a1Lexicon,
+            lexicon,
             sessionLength - exercises.length
           );
           exercises = [...exercises, ...extra];
@@ -116,13 +116,13 @@ export function DrillArenaView() {
         if (exercises.length < sessionLength) {
           const extra = generateMorphologyDrills(
             'weak-spots',
-            a1Lexicon,
+            lexicon,
             sessionLength - exercises.length
           );
           exercises = [...exercises, ...extra];
         }
       } else {
-        exercises = generateMorphologyDrills(category, a1Lexicon, sessionLength);
+        exercises = generateMorphologyDrills(category, lexicon, sessionLength);
       }
 
       const meta = DRILL_CATEGORIES.find((c) => c.id === category);
