@@ -236,7 +236,7 @@ export const U25_LEXICON: LexiconEntry[] = [
     tags: ['compound', 'school', 'irregular-plural'],
   }),
   noun({
-    lemma: 'förlag', en: 'publishing house', ipa: '/ˈføːrˌlɑːɡ/', gender: 'ett', declension: 6,
+    lemma: 'förlag', en: 'publishing house', ipa: '/fœrˈlɑːɡ/', gender: 'ett', declension: 6,
     defSg: 'förlaget', indefPl: 'förlag', defPl: 'förlagen',
     example: { sv: 'Förlaget ger ut tio nya böcker varje år.', en: 'The publishing house publishes ten new books every year.' },
     tags: ['culture', 'work'],

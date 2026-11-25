@@ -129,7 +129,7 @@ export const U15_LEXICON: LexiconEntry[] = [
     tags: ['prep-place'],
   }),
   closed('prep', {
-    lemma: 'utanför', en: 'outside', ipa: '/ˈɵːtanˌføːr/',
+    lemma: 'utanför', en: 'outside', ipa: '/ˈʉːtanˌføːr/',
     example: { sv: 'Vi väntar utanför biografen.', en: 'We are waiting outside the cinema.' },
     tags: ['prep-place'],
   }),
@@ -181,7 +181,7 @@ export const U15_LEXICON: LexiconEntry[] = [
     tags: ['home', 'furniture'],
   }),
   noun({
-    lemma: 'sjukhus', en: 'hospital', ipa: '/ˈɧɵːkˌhɵːs/', gender: 'ett', declension: 6,
+    lemma: 'sjukhus', en: 'hospital', ipa: '/ˈɧʉːkˌhʉːs/', gender: 'ett', declension: 6,
     defSg: 'sjukhuset', indefPl: 'sjukhus', defPl: 'sjukhusen',
     example: { sv: 'Min syster arbetar på sjukhuset i Uppsala.', en: 'My sister works at the hospital in Uppsala.' },
     tags: ['places', 'institutions'],

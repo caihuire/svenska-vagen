@@ -124,7 +124,7 @@ export const U14_LEXICON: LexiconEntry[] = [
   noun({
     lemma: 'ansikte', en: 'face', ipa: '/ˈanˌsɪktɛ/', gender: 'ett', declension: 5,
     defSg: 'ansiktet', indefPl: 'ansikten', defPl: 'ansiktena',
-    example: { sv: 'Ansiktet på klockan var stort och lätt att läsa.', en: 'The face of the clock was big and easy to read.' },
+    example: { sv: 'Ansiktet på bilden var lätt att känna igen.', en: 'The face in the picture was easy to recognise.' },
     tags: ['body', 'definite'],
   }),
   noun({
@@ -170,13 +170,13 @@ export const U14_LEXICON: LexiconEntry[] = [
     tags: ['health', 'definite'],
   }),
   noun({
-    lemma: 'gitarr', en: 'guitar', ipa: '/ɪˈɡɑrː/', gender: 'en', declension: 3,
+    lemma: 'gitarr', en: 'guitar', ipa: '/ɡɪˈtarː/', gender: 'en', declension: 3,
     defSg: 'gitarren', indefPl: 'gitarrer', defPl: 'gitarrerna',
     example: { sv: 'Min bror spelar gitarr i ett band.', en: 'My brother plays guitar in a band.' },
     tags: ['instruments', 'article-usage'],
   }),
   noun({
-    lemma: 'piano', en: 'piano', ipa: '/ˈpjɑːnʊ/', gender: 'ett', declension: 5,
+    lemma: 'piano', en: 'piano', ipa: '/pɪˈɑːnʊ/', gender: 'ett', declension: 5,
     defSg: 'pianot', indefPl: 'pianon', defPl: 'pianona',
     example: { sv: 'Hon spelar piano varje kväll efter middagen.', en: 'She plays the piano every evening after dinner.' },
     tags: ['instruments', 'article-usage'],

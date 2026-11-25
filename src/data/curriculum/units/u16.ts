@@ -21,7 +21,7 @@ export const u16: UnitContent = {
       id: 'u16-card-2',
       kind: 'table',
       title: 'Building the Definite Adjective',
-      body: 'The definite adjective is normally the plural form (adjective + -a). Adjectives ending in unstressed -el, -en or -er usually drop the -e- before the ending, and the participles in -ad become -ade. The word liten is irregular: lilla in the definite and små in the plural. In careful writing, the -a ending can also become -e when the noun is a male person (den gamle kungen, min lille bror, den förste ministern). This -e is optional and rather formal, and den gamla kungen is also correct, so learners can safely use -a everywhere.',
+      body: 'The definite adjective is normally the plural form (adjective + -a). Adjectives ending in unstressed -el, -en or -er usually drop the -e- before the ending, and the participles in -ad become -ade. The word liten is irregular: it has lilla in the definite singular (den lilla staden, det lilla huset) and små in the plural, both indefinite and definite (små städer, de små städerna). In careful writing, the -a ending can also become -e when the noun is a male person (den gamle kungen, min lille bror, den förste ministern). This -e is optional and rather formal, and den gamla kungen is also correct, so learners can safely use -a everywhere.',
       table: {
         headers: ['Indefinite', 'Definite (Type 1)', 'Note'],
         rows: [

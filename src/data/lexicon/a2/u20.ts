@@ -104,7 +104,7 @@ export const U20_LEXICON: LexiconEntry[] = [
     forms: { inf: 'bjuda', imp: 'bjud', pres: 'bjuder', past: 'bjöd', supine: 'bjudit' },
   }),
   verb({
-    lemma: 'ljuga', en: 'to lie, to tell a lie', ipa: '/ˈljʉːɡa/',
+    lemma: 'ljuga', en: 'to lie, to tell a lie', ipa: '/ˈjʉːɡa/',
     example: { sv: 'Han ljög om var han hade varit.', en: 'He lied about where he had been.' },
     tags: ['series-yu-o-u'],
     forms: { inf: 'ljuga', imp: 'ljug', pres: 'ljuger', past: 'ljög', supine: 'ljugit' },
@@ -115,11 +115,11 @@ export const U20_LEXICON: LexiconEntry[] = [
     tags: ['series-yu-o-u'],
     forms: { inf: 'flyta', imp: 'flyt', pres: 'flyter', past: 'flöt', supine: 'flutit' },
   }),
-  // Series 3: i - a - u
+  // Series 3: i - a - u (sjunka is actually u-ö-u, tagged with the y/u-ö-u series)
   verb({
     lemma: 'sjunka', en: 'to sink, to fall', ipa: '/ˈɧɵŋka/',
     example: { sv: 'Skeppet sjönk på några minuter.', en: 'The ship sank in a few minutes.' },
-    tags: ['series-i-a-u'],
+    tags: ['series-yu-o-u'],
     forms: { inf: 'sjunka', imp: 'sjunk', pres: 'sjunker', past: 'sjönk', supine: 'sjunkit' },
   }),
   verb({

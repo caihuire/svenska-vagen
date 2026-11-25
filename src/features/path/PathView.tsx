@@ -164,7 +164,7 @@ export function PathView() {
           <div className="flex items-center justify-between gap-2">
             <span className="text-xs font-medium text-[var(--text-muted)]">
               {progress.settings.freeBrowse
-                ? 'Free-Browse: all A1 units open'
+                ? 'Free-Browse: all available units open'
                 : 'Guided: score 80%+ to unlock next'}
             </span>
             <button

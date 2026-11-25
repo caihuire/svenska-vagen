@@ -42,7 +42,7 @@ export const u17: UnitContent = {
       id: 'u17-card-3',
       kind: 'examples',
       title: 'mer and mest, and Using the Forms',
-      body: 'Long adjectives and many adjectives of foreign origin are not given -are/-ast. Instead mer (more) or mest (most) is placed before the basic form. This is the usual pattern for participles (älskad, komplicerad), adjectives in -ande/-ende (spännande), most adjectives in -isk (praktisk, typisk) and many others (intressant, intelligent, modern, populär). The adjective itself keeps its ordinary agreement: ett mer modernt hus. A few words of this type do have -are/-ast forms in some uses, but mer/mest is the safe choice for learners. Mest + adjective also makes a superlative that is definite before a noun: den mest populära sporten.',
+      body: 'Long adjectives and many adjectives of foreign origin are not given -are/-ast. Instead mer (more) or mest (most) is placed before the basic form. This is the usual pattern for participles (älskad, komplicerad), adjectives in -ande/-ende (spännande), most adjectives in -isk (praktisk, typisk) and many others. Words such as intressant, intelligent, modern and populär are often compared with mer/mest too, although -are/-ast forms (intressantare, modernast) also occur. The adjective itself keeps its ordinary agreement: ett mer modernt hus. For the longer foreign-looking words, mer/mest is the safe choice for learners. Mest + adjective also makes a superlative that is definite before a noun: den mest populära sporten.',
       examples: [
         {
           sv: 'Älgen är större än hjorten.',
@@ -70,7 +70,7 @@ export const u17: UnitContent = {
       id: 'u17-card-4',
       kind: 'trap',
       title: 'English Traps: "more bigger", "better than" and "the"',
-      body: 'English says "the biggest" with an article, but Swedish often leaves it out after vara: Älgen är störst is common, and Älgen är den största is also fine. Before a noun the article is required: den största älgen. Do not combine both systems: say större, not mer stor, and never mer större. Do not use mer or -are with bra or god: bättre is the only comparative of both. English "than" is än, while "as ... as" is lika ... som, so *större som and *lika stor än are wrong. A comparative also does not mean "too": för stor means too big. Finally, mindre can mean both smaller and less, and mest can mean both most and mostly, so read the context.',
+      body: 'English says "the biggest" with an article, but Swedish often leaves it out after vara: Älgen är störst is common, and Älgen är den största is also fine. Before a noun the article is required: den största älgen. Do not combine both systems: say större, not mer stor, and never mer större. Do not use mer or -are with bra, and with god in the sense of "good" the comparative is bättre. (In the sense of "tasty", god also has the regular forms godare and godast.) English "than" is än, while "as ... as" is lika ... som, so *större som and *lika stor än are wrong. A comparative also does not mean "too": för stor means too big. Finally, mindre can mean both smaller and less, and mest can mean both most and mostly, so read the context.',
       highlight: 'större (not mer stor) · bättre (not mer bra) · större än · lika stor som · Älgen är störst / den största älgen',
     },
   ],
@@ -384,7 +384,7 @@ export const u17: UnitContent = {
       prompt: 'Listen and choose the matching English sentence:',
       audioText: 'Älgen är större än hjorten.',
       fallbackText: 'Älgen är större än hjorten.',
-      ipa: '/ˈɛljɛn ɛː ˈstøːrɛ ɛn ˈjʊʈɛn/',
+      ipa: '/ˈɛljɛn ɛː ˈstœrːɛ ɛn ˈjʊʈɛn/',
       options: [
         'The moose is bigger than the red deer.',
         'The red deer is bigger than the moose.',

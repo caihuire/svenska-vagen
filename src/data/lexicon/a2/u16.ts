@@ -89,7 +89,7 @@ export const U16_LEXICON: LexiconEntry[] = [
     tags: ['adj-definite', 'food', 'irregular-stem'],
   }),
   adj({
-    lemma: 'tjusig', en: 'smart, stylish', ipa: '/ˈɕɵːsɪɡ/', neuter: 'tjusigt', plDef: 'tjusiga',
+    lemma: 'tjusig', en: 'smart, stylish', ipa: '/ˈɕʉːsɪɡ/', neuter: 'tjusigt', plDef: 'tjusiga',
     example: { sv: 'Min bror köpte en tjusig kostym till bröllopet.', en: 'My brother bought a smart suit for the wedding.' },
     tags: ['adj-definite', 'clothes'],
   }),
@@ -119,7 +119,7 @@ export const U16_LEXICON: LexiconEntry[] = [
     tags: ['adj-definite', 'participle-form', 'work'],
   }),
   adj({
-    lemma: 'begagnad', en: 'second-hand, used', ipa: '/bɛˈɡɑːŋnad/', neuter: 'begagnat', plDef: 'begagnade',
+    lemma: 'begagnad', en: 'second-hand, used', ipa: '/bɛˈɡaŋnad/', neuter: 'begagnat', plDef: 'begagnade',
     example: { sv: 'De begagnade möblerna var billiga och fina.', en: 'The second-hand furniture was cheap and nice.' },
     tags: ['adj-definite', 'participle-form', 'shopping'],
   }),
@@ -205,13 +205,13 @@ export const U16_LEXICON: LexiconEntry[] = [
     tags: ['people', 'home'],
   }),
   noun({
-    lemma: 'utmaning', en: 'challenge', ipa: '/ˈɵːtˌmɑːnɪŋ/', gender: 'en', declension: 2,
+    lemma: 'utmaning', en: 'challenge', ipa: '/ˈʉːtˌmɑːnɪŋ/', gender: 'en', declension: 2,
     defSg: 'utmaningen', indefPl: 'utmaningar', defPl: 'utmaningarna',
     example: { sv: 'Nästa stora utmaning är att lära sig språket.', en: 'The next big challenge is to learn the language.' },
     tags: ['work', 'abstract'],
   }),
   noun({
-    lemma: 'sjuksköterska', en: 'nurse', ipa: '/ˈɧɵːkˌɧœtɛʂka/', gender: 'en', declension: 1,
+    lemma: 'sjuksköterska', en: 'nurse', ipa: '/ˈɧʉːkˌɧøːtɛʂka/', gender: 'en', declension: 1,
     defSg: 'sjuksköterskan', indefPl: 'sjuksköterskor', defPl: 'sjuksköterskorna',
     example: { sv: 'Den snälla sjuksköterskan hjälpte patienten.', en: 'The kind nurse helped the patient.' },
     tags: ['work', 'people'],

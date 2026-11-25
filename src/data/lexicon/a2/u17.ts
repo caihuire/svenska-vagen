@@ -100,7 +100,7 @@ export const U17_LEXICON: LexiconEntry[] = [
   superlative('äldst', 'äldsta', 'oldest', '/ɛldst/', { sv: 'Hon är äldst av syskonen.', en: 'She is the oldest of the siblings.' }),
   comparative('mindre', 'smaller; less', '/ˈmɪndrɛ/', { sv: 'Vår lägenhet är mindre än deras.', en: 'Our flat is smaller than theirs.' }),
   superlative('minst', 'minsta', 'smallest; least', '/mɪnst/', { sv: 'Katten är minst av djuren på gården.', en: 'The cat is the smallest of the animals on the farm.' }),
-  comparative('större', 'bigger, larger', '/ˈstøːrɛ/', { sv: 'Älgen är större än hjorten.', en: 'The moose is bigger than the red deer.' }),
+  comparative('större', 'bigger, larger', '/ˈstœrːɛ/', { sv: 'Älgen är större än hjorten.', en: 'The moose is bigger than the red deer.' }),
   superlative('störst', 'största', 'biggest, largest', '/stœʂt/', { sv: 'Vilken sjö är störst i Sverige?', en: 'Which lake is the largest in Sweden?' }),
   comparative('längre', 'longer; taller; further', '/ˈlɛŋːrɛ/', { sv: 'Vägen hem blev längre än jag trodde.', en: 'The way home turned out longer than I thought.' }),
   superlative('längst', 'längsta', 'longest; tallest; furthest', '/lɛŋst/', { sv: 'Vem har längst hår i klassen?', en: 'Who has the longest hair in the class?' }),
@@ -125,7 +125,7 @@ export const U17_LEXICON: LexiconEntry[] = [
     tags: ['adj-comparison', 'irregular'],
   }),
 
-  // mer/mest adjectives: no -are/-ast forms (comparison is made with mer/mest).
+  // mer/mest adjectives: learners are taught mer/mest; -are/-ast forms for intressant/modern/populär also occur but are not drilled.
   adj({
     lemma: 'intressant', en: 'interesting', ipa: '/ɪntrɛˈsant/', neuter: 'intressant', plDef: 'intressanta',
     example: { sv: 'Den här boken är mer intressant än filmen.', en: 'This book is more interesting than the film.' },

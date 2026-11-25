@@ -294,7 +294,7 @@ export const u14: UnitContent = {
       prompt: 'Listen and choose the matching English sentence:',
       audioText: 'Biblioteket stänger klockan åtta.',
       fallbackText: 'Biblioteket stänger klockan åtta.',
-      ipa: '/bɪblɪʊˈteːkɛt ˈstɛŋɛr ˈklɔkan ɔtː/',
+      ipa: '/bɪblɪʊˈteːkɛt ˈstɛŋɛr ˈklɔkan ˈɔtːa/',
       options: [
         'The library closes at eight o\'clock.',
         'The theatre opens at eight o\'clock.',

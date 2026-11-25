@@ -14,7 +14,7 @@ export const u15: UnitContent = {
       id: 'u15-card-1',
       kind: 'rule',
       title: 'på or i? Surface and Open Place vs. Enclosed Space',
-      body: 'Most of the time, på goes with a surface, an open area, an event, a public institution or a place where you work or study: på bordet, på torget, på sjukhuset, på flygplatsen, på kontoret. Use i for something you are inside or surrounded by, such as a room, a container, a town or a country: i rummet, i kylskåpet, i skogen, i Sverige. Many ordinary buildings take i (i skolan, i affären, i kyrkan, i biblioteket). The choice is partly fixed by habit, so it pays to learn the common pairs as chunks. Islands usually take på (på Gotland), while cities and countries take i.',
+      body: 'Most of the time, på goes with a surface, an open area, an event, a public institution or a place where you work or study: på bordet, på torget, på sjukhuset, på flygplatsen, på kontoret. Use i for something you are inside or surrounded by, such as a room, a container, a town or a country: i rummet, i kylskåpet, i skogen, i Sverige. Many ordinary buildings take i (i skolan, i affären, i kyrkan, i butiken). The choice is partly fixed by habit, so it pays to learn the common pairs as chunks. Islands usually take på (på Gotland), while cities and countries take i.',
       highlight: 'på bordet · på sjukhuset · på flygplatsen · i rummet · i kylskåpet · i skolan · i Sverige · på Gotland',
     },
     {
@@ -314,7 +314,7 @@ export const u15: UnitContent = {
       prompt: 'Listen and choose the matching English sentence:',
       audioText: 'Hotellet ligger mittemot sjukhuset.',
       fallbackText: 'Hotellet ligger mittemot sjukhuset.',
-      ipa: '/hʊˈtɛlɛt ˈlɪɡɛr ˈmɪtɛˌmuːt ˈɧɵːkˌhɵːsɛt/',
+      ipa: '/hʊˈtɛlɛt ˈlɪɡɛr ˈmɪtɛˌmuːt ˈɧʉːkˌhʉːsɛt/',
       options: [
         'The hotel is opposite the hospital.',
         'The hotel is behind the airport.',

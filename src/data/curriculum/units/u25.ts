@@ -321,7 +321,7 @@ export const u25: UnitContent = {
       mode: 'typed',
       accepted: ['flextid'],
       hint: 'Write the two parts together, with no change.',
-      explanation: 'Flextid joins flex (short for flexibel) and tid without any change: en flextid, an uncountable noun meaning flexible working hours.',
+      explanation: 'Flextid joins flex (short for flexibel) and tid without any change: flextid (an en-word, uncountable) meaning flexible working hours.',
       ttsText: 'På vårt kontor har vi flextid och kan komma när vi vill.',
     },
     {

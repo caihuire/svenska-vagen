@@ -215,7 +215,7 @@ export const U23_LEXICON: LexiconEntry[] = [
     tags: ['clothes', 'plural-only'],
   }),
   noun({
-    lemma: 'blus', en: 'blouse', ipa: '/blɵːs/', gender: 'en', declension: 2,
+    lemma: 'blus', en: 'blouse', ipa: '/blʉːs/', gender: 'en', declension: 2,
     defSg: 'blusen', indefPl: 'blusar', defPl: 'blusarna',
     example: { sv: 'Blusen som hänger på stolen är min.', en: 'The blouse that is hanging on the chair is mine.' },
     tags: ['clothes'],

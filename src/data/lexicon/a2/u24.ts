@@ -207,7 +207,7 @@ export const U24_LEXICON: LexiconEntry[] = [
     forms: { inf: 'tillverka', imp: 'tillverka', pres: 'tillverkar', past: 'tillverkade', supine: 'tillverkat' },
   }),
   verb({
-    lemma: 'utveckla', group: '1', en: 'to develop', ipa: '/ˈɵːtˌvɛkːla/',
+    lemma: 'utveckla', group: '1', en: 'to develop', ipa: '/ˈʉːtˌvɛkːla/',
     example: { sv: 'Ingenjörerna utvecklar en ny propeller.', en: 'The engineers are developing a new propeller.' },
     tags: ['group-1', 'invention'],
     forms: { inf: 'utveckla', imp: 'utveckla', pres: 'utvecklar', past: 'utvecklade', supine: 'utvecklat' },
@@ -232,7 +232,7 @@ export const U24_LEXICON: LexiconEntry[] = [
     tags: ['invention', 'tools'],
   }),
   noun({
-    lemma: 'säkerhetständsticka', en: 'safety match', ipa: '/ˈsɛːkɛrhetsˌtɛndˌtɪkːa/', gender: 'en', declension: 1,
+    lemma: 'säkerhetständsticka', en: 'safety match', ipa: '/ˈsɛːkɛrheːtsˌtɛndˌstɪkːa/', gender: 'en', declension: 1,
     defSg: 'säkerhetständstickan', indefPl: 'säkerhetständstickor', defPl: 'säkerhetständstickorna',
     example: { sv: 'Säkerhetständstickan tänds mot lådans sida.', en: 'The safety match is lit against the side of the box.' },
     tags: ['invention', 'household'],
