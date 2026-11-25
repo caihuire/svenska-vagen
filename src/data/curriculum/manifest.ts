@@ -242,7 +242,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Forming -s in present (delete -r/-er + s), past, supine, infinitive; active-to-passive transformation with optional av agent; agentless passives (replacing man); common deponents (finnas, hoppas, lyckas, minnas, skämmas, synas, trivas, tyckas, umgås, låtsas).',
     culturalTheme: 'Famous Swedish Inventions',
-    available: false,
+    available: true,
   },
   {
     id: 'u25',
