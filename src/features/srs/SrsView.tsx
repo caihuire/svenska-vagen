@@ -4,7 +4,7 @@ import { AudioButton } from '../../components/AudioButton';
 import { GenderBadge } from '../../components/GenderBadge';
 import { SwedishInput } from '../../components/SwedishInput';
 import { loadUnit } from '../../data/curriculum/loader';
-import { getA1LexiconMap } from '../../data/lexicon/index';
+import { getLexiconMap } from '../../data/lexicon/index';
 import { evaluateTypedAnswer } from '../../engine/morphology/normalizer';
 import {
   getDueSrsQueue,
@@ -59,7 +59,7 @@ export function SrsView() {
 
   useEffect(() => {
     let cancelled = false;
-    getA1LexiconMap()
+    getLexiconMap()
       .then((map) => {
         if (!cancelled) setLexMap(map);
       })

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CURRICULUM_MANIFEST } from '../curriculum/manifest';
 import { isUnitLoadable, loadUnit } from '../curriculum/loader';
-import { getA1LexiconMap, loadStageLexicon } from '../lexicon/index';
+import { getLexiconMap, loadStageLexicon } from '../lexicon/index';
 import { inflectAdj, inflectNoun, inflectVerb } from '../../engine/morphology/inflector';
 import { extractSentences, parseCulturalMarkup } from '../../engine/reader/parser';
 import type { Exercise, LexiconEntry, UnitContent } from '../../types/index';
@@ -30,8 +30,8 @@ describe('Content Integrity Gate', () => {
       expect(unit.available).toBe(true);
       expect(isUnitLoadable(unit.id)).toBe(true);
     }
-    for (const unit of [...a2, ...b1, ...b2]) {
-      expect(unit.available).toBe(false);
+    for (const unit of CURRICULUM_MANIFEST) {
+      expect(unit.available).toBe(isUnitLoadable(unit.id));
     }
     for (const unit of CURRICULUM_MANIFEST) {
       expect(unit.title.trim().length).toBeGreaterThan(0);
@@ -42,13 +42,12 @@ describe('Content Integrity Gate', () => {
 
   it('loads Stage A1 lexicon with >= 325 unique entries and no duplicate IDs', async () => {
     const a1 = await loadStageLexicon('A1');
-    const map = await getA1LexiconMap();
+    const map = await getLexiconMap();
 
     expect(a1.length).toBeGreaterThanOrEqual(325);
     expect(a1).toHaveLength(389);
-    expect(map.size).toBe(a1.length);
+    expect(map.has('noun:arm')).toBe(true);
 
-    expect(await loadStageLexicon('A2')).toEqual([]);
     expect(await loadStageLexicon('B1')).toEqual([]);
     expect(await loadStageLexicon('B2')).toEqual([]);
 
@@ -64,9 +63,7 @@ describe('Content Integrity Gate', () => {
     }
   });
 
-  it('provides explicit forms overrides and valid non-empty inflections for all Stage A1 nouns, verbs, and adjectives', async () => {
-    const entries: LexiconEntry[] = await loadStageLexicon('A1');
-
+  const assertInflectable = (entries: LexiconEntry[]): void => {
     for (const entry of entries) {
       if (entry.pos === 'noun') {
         expect(entry.morph?.pos).toBe('noun');
@@ -108,14 +105,86 @@ describe('Content Integrity Gate', () => {
         expect(inflected.common.length).toBeGreaterThan(0);
         expect(inflected.neuter.length).toBeGreaterThan(0);
         expect(inflected.plDef.length).toBeGreaterThan(0);
+        // suppletive/regular comparison forms, when declared, must be real and differ from common
+        if (entry.morph?.pos === 'adj') {
+          const f = entry.morph.forms;
+          if (f && (f.comp !== undefined || f.sup !== undefined)) {
+            expect(typeof f.comp === 'string' && f.comp.trim().length > 0).toBe(true);
+            expect(typeof f.sup === 'string' && f.sup.trim().length > 0).toBe(true);
+            expect(f.comp).not.toBe(inflected.common);
+            expect(f.sup).not.toBe(inflected.common);
+          }
+        }
       }
+    }
+  };
+
+  it('provides explicit forms overrides and valid non-empty inflections for all Stage A1 nouns, verbs, and adjectives', async () => {
+    const entries: LexiconEntry[] = await loadStageLexicon('A1');
+    expect(entries.length).toBeGreaterThan(0);
+    assertInflectable(entries);
+  });
+
+  it('Stage A2 lexicon has unique, well-formed entries', async () => {
+    const a2: LexiconEntry[] = await loadStageLexicon('A2');
+    expect(a2.length).toBeGreaterThan(0);
+
+    const a1Ids = new Set((await loadStageLexicon('A1')).map((e) => e.id));
+    const a2UnitIds = new Set(Array.from({ length: 12 }, (_, i) => `u${i + 14}`));
+    const seenIds = new Set<string>();
+    for (const entry of a2) {
+      expect(seenIds.has(entry.id)).toBe(false);
+      seenIds.add(entry.id);
+      expect(a1Ids.has(entry.id)).toBe(false);
+      expect(entry.id).toBe(`${entry.pos}:${entry.lemma}`);
+      expect(entry.stage).toBe('A2');
+      expect(a2UnitIds.has(entry.unitId)).toBe(true);
+      expect(entry.example?.sv.trim().length).toBeGreaterThan(0);
+      expect(entry.example?.en.trim().length).toBeGreaterThan(0);
+      expect(entry.ipa?.trim().length).toBeGreaterThan(0);
+    }
+    assertInflectable(a2);
+  });
+
+  it('A2 lexicon totals', async () => {
+    const a2 = await loadStageLexicon('A2');
+    expect(a2.length).toBeGreaterThanOrEqual(330);
+    expect(a2.length).toBeLessThanOrEqual(400);
+    expect(a2).toHaveLength(379);
+
+    const a2Units = CURRICULUM_MANIFEST.filter((u) => u.stage === 'A2');
+    expect(a2Units).toHaveLength(12);
+    expect(a2Units.map((u) => u.id)).toEqual(Array.from({ length: 12 }, (_, i) => `u${i + 14}`));
+    for (const unit of a2Units) {
+      expect(unit.available).toBe(true);
+      expect(isUnitLoadable(unit.id)).toBe(true);
     }
   });
 
-  it('loads all available units (u01-u13) with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
-    const lexMap = await getA1LexiconMap();
-    const availableUnits = CURRICULUM_MANIFEST.filter((u) => u.available);
-    expect(availableUnits).toHaveLength(13);
+  it('no available unit has literal [surface|lexId] token markup in exercise text fields', async () => {
+    const markupRe = /\[[^\]|]+\|[^\]]+\]/;
+    const fields = ['target', 'prompt', 'sentence', 'explanation', 'ttsText', 'fallbackText', 'audioText', 'options', 'chunks', 'tokens'];
+    const offenders: string[] = [];
+    for (const summary of CURRICULUM_MANIFEST.filter((u) => isUnitLoadable(u.id))) {
+      const unit: UnitContent = await loadUnit(summary.id);
+      const all: Exercise[] = [...unit.exercises, ...unit.culturalText.comprehension];
+      for (const ex of all) {
+        const record = ex as unknown as Record<string, unknown>;
+        for (const field of fields) {
+          const value = record[field];
+          if (value === undefined) continue;
+          const text = Array.isArray(value) ? value.join(' ') : String(value);
+          if (markupRe.test(text)) offenders.push(`${ex.id}.${field}`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  it('loads all available units across the whole curriculum with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
+    const lexMap = await getLexiconMap();
+    const availableUnits = CURRICULUM_MANIFEST.filter((u) => isUnitLoadable(u.id));
+    expect(availableUnits.length).toBeGreaterThanOrEqual(13);
 
     const seenExerciseIds = new Set<string>();
 
@@ -138,6 +207,11 @@ describe('Content Integrity Gate', () => {
         case 'word-order':
           expect(ex.chunks.length).toBeGreaterThanOrEqual(3);
           expect([...ex.chunks].sort()).toEqual([...ex.correctOrder].sort());
+          for (const order of ex.acceptedOrders ?? []) {
+            expect([...order].sort(), `${ex.id} acceptedOrders must permute chunks`).toEqual(
+              [...ex.chunks].sort()
+            );
+          }
           break;
         case 'cloze':
           expect(ex.accepted.length).toBeGreaterThan(0);

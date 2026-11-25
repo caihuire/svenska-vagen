@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { IosInstallBanner } from '../../components/IosInstallBanner';
 import { CURRICULUM_MANIFEST } from '../../data/curriculum/manifest';
-import { loadStageLexicon } from '../../data/lexicon/index';
+import { loadAllLexicon } from '../../data/lexicon/index';
 import { computeUnitMastery, getWeakGrammarTags } from '../../engine/mastery/tracker';
 import { getDueSrsQueue } from '../../engine/srs/scheduler';
 import { useApp } from '../../store/AppContext';
@@ -23,7 +23,7 @@ import type { CefrStage, UnitSummary } from '../../types/index';
 
 const STAGES: { stage: CefrStage; label: string; subtitle: string }[] = [
   { stage: 'A1', label: 'Stage A1 — Foundations', subtitle: 'Units 1–13 · Wave 1' },
-  { stage: 'A2', label: 'Stage A2 — Core Grammar', subtitle: 'Units 14–25 · Wave 2 Preview' },
+  { stage: 'A2', label: 'Stage A2 — Core Grammar', subtitle: 'Units 14–25 · Wave 2' },
   { stage: 'B1', label: 'Stage B1 — Intermediate Nuance', subtitle: 'Units 26–38 · Wave 3 Preview' },
   { stage: 'B2', label: 'Stage B2 — Mastery & Fluency', subtitle: 'Units 39–51 · Wave 4 Preview' },
 ];
@@ -40,7 +40,7 @@ export function PathView() {
 
   useEffect(() => {
     let cancelled = false;
-    loadStageLexicon('A1')
+    loadAllLexicon()
       .then((entries) => {
         if (cancelled) return;
         const grouped: Record<string, string[]> = {};
@@ -164,7 +164,7 @@ export function PathView() {
           <div className="flex items-center justify-between gap-2">
             <span className="text-xs font-medium text-[var(--text-muted)]">
               {progress.settings.freeBrowse
-                ? 'Free-Browse: all A1 units open'
+                ? 'Free-Browse: all available units open'
                 : 'Guided: score 80%+ to unlock next'}
             </span>
             <button

@@ -257,5 +257,7 @@ export type DrillCategory =
   | 'definite'
   | 'verbs'
   | 'adjectives'
+  | 'comparison'
+  | 'passive'
   | 'word-order'
   | 'weak-spots';

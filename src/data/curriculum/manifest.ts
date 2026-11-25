@@ -142,7 +142,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Singular definite (-en/-n, -et/-t, dropping -e- in neuter -el/-en/-er); plural definite (-na, -a, -en); article contrasts vs. English (abstract nouns, institutions, professions/nationalities, instruments/pastimes).',
     culturalTheme: 'Swedish Currency (Krona & Öre)',
-    available: false,
+    available: true,
   },
   {
     id: 'u15',
@@ -152,7 +152,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'på (surface, public institutions, work/study) vs. i (volume, i skolan/affären/kyrkan); på landet vs. i landet; hos (at home/workplace); vid (beside lengthwise); spatial prepositions & compass points (norr om, sydväst om).',
     culturalTheme: 'The Sámi People & Languages',
-    available: false,
+    available: true,
   },
   {
     id: 'u16',
@@ -162,7 +162,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Double definiteness Type 1 (den nya chefen, det gamla huset, de stora frågorna); -e masculine/past-participle/superlative definite ending; Type 2 after genitive/possessive/denna/samma/nästa (no end article on noun).',
     culturalTheme: 'The Bernadotte Dynasty',
-    available: false,
+    available: true,
   },
   {
     id: 'u17',
@@ -172,7 +172,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Regular -are/-ast; mer/mest (participles, -isk, -ande/-ende); irregulars (god/bra -> bättre/bäst, dålig -> sämre/sämst, gammal -> äldre/äldst, liten -> mindre/minst); vowel-change -re/-st (stor/större, lång/längre, ung/yngre, hög/högre); definite superlatives.',
     culturalTheme: 'The Moose (Älgen)',
-    available: false,
+    available: true,
   },
   {
     id: 'u18',
@@ -182,7 +182,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Sub-clause straight order (conj + subj + verb); fronted sub-clause triggers main-clause V2 inversion; subordinators (att, om, när, innan, medan, sedan, eftersom, därför att, ifall, för att, fast(än), trots att); translating that (att vs. som).',
     culturalTheme: 'Traditional & Modern Swedish Food',
-    available: false,
+    available: true,
   },
   {
     id: 'u19',
@@ -192,7 +192,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Group I (-ade/-at); Group IIa voiced (-de/-t, -nd drops d, -mm/-nn drops one, long vowel+d doubles dd/tt); Group IIb voiceless (-te/-t); Group III long vowel (-dde/-tt); perfect (har + supine) & pluperfect (hade + supine).',
     culturalTheme: 'The Vasa Era',
-    available: false,
+    available: true,
   },
   {
     id: 'u20',
@@ -202,7 +202,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       '5 main gradation series (i-e-i skriva, y/u-ö-u flyga/njuta, i-a-u dricka, a-o-a ta/dra, ä-a-u skära/bära) + intro to mixed strong verbs (falla, komma, ligga, sova, vara, äta).',
     culturalTheme: "Sweden's Age of Great Power",
-    available: false,
+    available: true,
   },
   {
     id: 'u21',
@@ -212,7 +212,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Adjective vs. adverb (-t neuter vs. manner adverb); -ligen/-tvis adverbs; non-derived time/manner/place adverbs; adverb comparison (fort/fortare/fortast, gärna/hellre/helst, bra/bättre/bäst, dåligt/sämre vs. värre).',
     culturalTheme: 'English Influence on Swedish',
-    available: false,
+    available: true,
   },
   {
     id: 'u22',
@@ -222,7 +222,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       '3-way split: Location (var, här, där, inne, ute, uppe, nere, hemma, framme, borta), Motion Towards (vart, hit, dit, in, ut, upp, ner, hem, fram, bort), Motion Away (varifrån, härifrån, hemifrån); var/vart vs. där/dit.',
     culturalTheme: 'Viking Town of Birka',
-    available: false,
+    available: true,
   },
   {
     id: 'u23',
@@ -232,7 +232,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'SIV rule (Subject – inte/clausal adverbial – Finite Verb in sub-clauses); main vs. sub-clause adverbial contrast; relative clauses with som and där.',
     culturalTheme: 'Swedish Troubadour Tradition',
-    available: false,
+    available: true,
   },
   {
     id: 'u24',
@@ -242,7 +242,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Forming -s in present (delete -r/-er + s), past, supine, infinitive; active-to-passive transformation with optional av agent; agentless passives (replacing man); common deponents (finnas, hoppas, lyckas, minnas, skämmas, synas, trivas, tyckas, umgås, låtsas).',
     culturalTheme: 'Famous Swedish Inventions',
-    available: false,
+    available: true,
   },
   {
     id: 'u25',
@@ -252,7 +252,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Borrowing, compounding (with/without link -s-, dropping final -e/-a as in lärare + lön -> lärarlön), basic affixation (o-, -het, -a), abbreviations & acronyms (t.ex., bl.a., d.v.s., o.s.v., s.k., bio, moms, rea).',
     culturalTheme: 'The Island of Gotland',
-    available: false,
+    available: true,
   },
 
   // Stage B1 — Intermediate Nuance (Units 26–38)

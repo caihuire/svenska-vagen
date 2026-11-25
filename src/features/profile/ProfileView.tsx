@@ -281,7 +281,7 @@ export function ProfileView() {
               {
                 key: 'freeBrowse' as const,
                 label: 'Free-Browse Mode',
-                desc: 'Unlock all available Wave 1 units without 80% gates',
+                desc: 'Unlock all available units without 80% gates',
                 value: progress.settings.freeBrowse,
               },
             ].map((item) => (

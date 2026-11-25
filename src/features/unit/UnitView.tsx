@@ -4,7 +4,7 @@ import { ArrowLeft, Award, BookOpen, Dumbbell, FileText, Layers, Lock } from 'lu
 import { IosInstallBanner } from '../../components/IosInstallBanner';
 import { CURRICULUM_MANIFEST } from '../../data/curriculum/manifest';
 import { isUnitLoadable, loadUnit } from '../../data/curriculum/loader';
-import { getA1LexiconMap } from '../../data/lexicon/index';
+import { getLexiconMap } from '../../data/lexicon/index';
 import { computeUnitMastery } from '../../engine/mastery/tracker';
 import { useApp } from '../../store/AppContext';
 import type { LexiconEntry, UnitContent } from '../../types/index';
@@ -60,7 +60,7 @@ export function UnitView() {
     }
 
     setLoading(true);
-    Promise.all([loadUnit(unitId), getA1LexiconMap()])
+    Promise.all([loadUnit(unitId), getLexiconMap()])
       .then(([loadedUnit, loadedLexMap]) => {
         if (cancelled) return;
         setUnit(loadedUnit);
@@ -117,7 +117,7 @@ export function UnitView() {
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-surface)] px-3 py-1 text-xs font-bold text-[var(--text-muted)]">
             <Lock className="h-3.5 w-3.5" aria-hidden="true" />
             <span>
-              Stage {summary.stage} · Unit {summary.number} (Wave 2–4 Preview)
+              Stage {summary.stage} · Unit {summary.number} (Wave 3–4 Preview)
             </span>
           </div>
           <h1 className="text-xl font-extrabold text-[var(--text-primary)]">

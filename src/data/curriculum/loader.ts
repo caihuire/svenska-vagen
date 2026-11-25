@@ -14,6 +14,18 @@ const UNIT_LOADERS: Record<string, () => Promise<UnitContent>> = {
   u11: () => import('./units/u11').then((m) => m.default),
   u12: () => import('./units/u12').then((m) => m.default),
   u13: () => import('./units/u13').then((m) => m.default),
+  u14: () => import('./units/u14').then((m) => m.default),
+  u15: () => import('./units/u15').then((m) => m.default),
+  u16: () => import('./units/u16').then((m) => m.default),
+  u17: () => import('./units/u17').then((m) => m.default),
+  u18: () => import('./units/u18').then((m) => m.default),
+  u19: () => import('./units/u19').then((m) => m.default),
+  u20: () => import('./units/u20').then((m) => m.default),
+  u21: () => import('./units/u21').then((m) => m.default),
+  u22: () => import('./units/u22').then((m) => m.default),
+  u23: () => import('./units/u23').then((m) => m.default),
+  u24: () => import('./units/u24').then((m) => m.default),
+  u25: () => import('./units/u25').then((m) => m.default),
 };
 
 export function isUnitLoadable(id: string): boolean {
@@ -23,7 +35,7 @@ export function isUnitLoadable(id: string): boolean {
 export async function loadUnit(id: string): Promise<UnitContent> {
   const loader = UNIT_LOADERS[id];
   if (!loader) {
-    throw new Error(`Unit "${id}" is not available in Wave 1.`);
+    throw new Error(`Unit "${id}" is not available yet.`);
   }
   return loader();
 }

@@ -3,11 +3,16 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowRight, Dumbbell, Target } from 'lucide-react';
 import { CURRICULUM_MANIFEST } from '../../data/curriculum/manifest';
 import { loadUnit } from '../../data/curriculum/loader';
-import { loadStageLexicon } from '../../data/lexicon/index';
-import { generateMorphologyDrills } from '../../engine/drills/generator';
+import { loadAllLexicon } from '../../data/lexicon/index';
+import {
+  filterLexiconByStage,
+  generateMorphologyDrills,
+  selectCuratedByStage,
+  selectDrillPool,
+} from '../../engine/drills/generator';
 import { getWeakGrammarTags } from '../../engine/mastery/tracker';
 import { useApp } from '../../store/AppContext';
-import type { DrillCategory, Exercise } from '../../types/index';
+import type { CefrStage, DrillCategory, Exercise } from '../../types/index';
 import { ExerciseSession } from '../exercises/ExerciseSession';
 
 interface DrillCategoryOption {
@@ -43,6 +48,16 @@ const DRILL_CATEGORIES: DrillCategoryOption[] = [
     description: 'Indefinite en/ett & plural/definite inflection',
   },
   {
+    id: 'comparison',
+    title: 'Comparison',
+    description: 'Comparative & superlative forms',
+  },
+  {
+    id: 'passive',
+    title: '-s Verbs & Passives',
+    description: 'Deponents and -s passives',
+  },
+  {
     id: 'word-order',
     title: 'V2 / SIV Word Order',
     description: 'Fronting inversion, questions & clausal adverbials',
@@ -67,6 +82,7 @@ export function DrillArenaView() {
   const { progress } = useApp();
   const [searchParams] = useSearchParams();
   const [sessionLength, setSessionLength] = useState<10 | 20>(10);
+  const [stage, setStage] = useState<CefrStage | 'all'>('all');
   const [loadingCategory, setLoadingCategory] = useState<DrillCategory | null>(
     null
   );
@@ -82,7 +98,17 @@ export function DrillArenaView() {
     setError(null);
     setLoadingCategory(category);
     try {
-      const a1Lexicon = await loadStageLexicon('A1');
+      const allLexicon = await loadAllLexicon();
+      // Falls back to the full pool when the stage-filtered pool is too small.
+      const lexicon =
+        category === 'word-order' || category === 'weak-spots'
+          ? filterLexiconByStage(allLexicon, stage).length > 0
+            ? filterLexiconByStage(allLexicon, stage)
+            : allLexicon
+          : selectDrillPool(allLexicon, stage, category, sessionLength);
+      const unitStages: Record<string, CefrStage> = Object.fromEntries(
+        CURRICULUM_MANIFEST.map((u) => [u.id, u.stage])
+      );
       let exercises: Exercise[] = [];
 
       if (category === 'word-order') {
@@ -90,14 +116,17 @@ export function DrillArenaView() {
           (u) => u.id
         );
         const units = await Promise.all(availableIds.map((id) => loadUnit(id)));
-        const wordOrderPool = units.flatMap((u) =>
-          u.exercises.filter((ex) => ex.type === 'word-order')
+        const wordOrderPool = selectCuratedByStage(
+          units.flatMap((u) => u.exercises.filter((ex) => ex.type === 'word-order')),
+          unitStages,
+          stage,
+          sessionLength
         );
         exercises = shuffle(wordOrderPool).slice(0, sessionLength);
         if (exercises.length < sessionLength) {
           const extra = generateMorphologyDrills(
             'word-order',
-            a1Lexicon,
+            lexicon,
             sessionLength - exercises.length
           );
           exercises = [...exercises, ...extra];
@@ -108,21 +137,25 @@ export function DrillArenaView() {
         );
         const units = await Promise.all(availableIds.map((id) => loadUnit(id)));
         const weakTagSet = new Set(weakTags.map((w) => w.tag));
-        const unitExercises = units.flatMap((u) => u.exercises);
-        const matchingCurated = unitExercises.filter((ex) =>
-          weakTagSet.has(ex.grammarTag)
+        const matchingCurated = selectCuratedByStage(
+          units
+            .flatMap((u) => u.exercises)
+            .filter((ex) => weakTagSet.has(ex.grammarTag)),
+          unitStages,
+          stage,
+          sessionLength
         );
         exercises = shuffle(matchingCurated).slice(0, sessionLength);
         if (exercises.length < sessionLength) {
           const extra = generateMorphologyDrills(
             'weak-spots',
-            a1Lexicon,
+            lexicon,
             sessionLength - exercises.length
           );
           exercises = [...exercises, ...extra];
         }
       } else {
-        exercises = generateMorphologyDrills(category, a1Lexicon, sessionLength);
+        exercises = generateMorphologyDrills(category, lexicon, sessionLength);
       }
 
       const meta = DRILL_CATEGORIES.find((c) => c.id === category);
@@ -183,6 +216,35 @@ export function DrillArenaView() {
             High-volume Swedish inflection and word-order practice. Auto-advance is{' '}
             {progress.settings.autoAdvance ? 'ON' : 'OFF'}.
           </p>
+
+          <div className="flex items-center justify-between gap-2 rounded-xl bg-[var(--bg-surface)] p-2">
+            <span className="px-2 text-xs font-bold text-[var(--text-muted)]">
+              Stage
+            </span>
+            <div className="flex gap-1.5">
+              {(
+                [
+                  ['A1', 'A1'],
+                  ['A2', 'A2'],
+                  ['all', 'All'],
+                ] as const
+              ).map(([value, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setStage(value)}
+                  aria-pressed={stage === value}
+                  className={`min-h-[48px] min-w-[56px] rounded-xl px-3 text-sm font-bold transition-colors select-none touch-manipulation ${
+                    stage === value
+                      ? 'bg-[var(--brand)] text-[var(--on-brand)]'
+                      : 'border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)]'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="flex items-center justify-between gap-2 rounded-xl bg-[var(--bg-surface)] p-2">
             <span className="px-2 text-xs font-bold text-[var(--text-muted)]">

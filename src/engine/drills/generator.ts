@@ -1,4 +1,5 @@
 import type {
+  CefrStage,
   ClassifierExercise,
   DrillCategory,
   Exercise,
@@ -122,12 +123,20 @@ function buildDefiniteExercise(
   };
 }
 
+function isSVerb(forms: { inf: string; pres: string }): boolean {
+  return /s$/i.test(forms.inf) && /s$/i.test(forms.pres);
+}
+
+function isBlankForm(value: string | undefined): boolean {
+  return !value || /^[—-]+$/.test(value.trim());
+}
+
 function buildVerbExercise(
   entry: LexiconEntry,
   idx: number,
   rng: () => number
 ): MorphFillExercise | null {
-  if (entry.morph?.pos !== 'verb') return null;
+  if (entry.morph?.pos !== 'verb' || entry.tags?.includes('rare-forms')) return null;
   const forms = inflectVerb(entry);
 
   const slots: Array<{ key: string; prompt: string; answer: string }> = [
@@ -137,8 +146,13 @@ function buildVerbExercise(
     { key: 'imp', prompt: `Write the imperative of "${forms.inf}"`, answer: forms.imp },
   ].filter((s) => Boolean(s.answer) && !/^[—-]+$/.test(s.answer.trim()));
 
-  if (slots.length === 0) return null;
-  const chosen = slots[Math.floor(rng() * slots.length)];
+  // -s verbs (deponents/passives) have a placeholder imperative slot and a
+  // present identical to the infinitive: never drill those.
+  const sVerb = isSVerb(forms);
+  const usable = sVerb ? slots.filter((s) => s.key !== 'imp' && s.answer !== forms.inf) : slots;
+
+  if (usable.length === 0) return null;
+  const chosen = usable[Math.floor(rng() * usable.length)];
 
   return {
     id: `drill-verbs-${entry.id}-${chosen.key}-${idx}`,
@@ -176,6 +190,9 @@ function buildAdjExercise(
     },
   ].filter((s) => Boolean(s.answer));
 
+  // Skip only degenerate entries (all forms identical, e.g. bra, gratis); -t adjectives
+  // such as kort still drill "neuter = no extra -t".
+  if (forms.neuter === forms.common && forms.plDef === forms.common) return null;
   if (slots.length === 0) return null;
   const chosen = slots[Math.floor(rng() * slots.length)];
 
@@ -194,6 +211,109 @@ function buildAdjExercise(
   };
 }
 
+function comparisonSlots(entry: LexiconEntry): Array<'comp' | 'sup'> {
+  if (entry.morph?.pos !== 'adj' || entry.tags?.includes('mer-mest')) return [];
+  const forms = inflectAdj(entry);
+  const slots: Array<'comp' | 'sup'> = [];
+  for (const key of ['comp', 'sup'] as const) {
+    const answer = forms[key];
+    if (!isBlankForm(answer) && answer !== forms.common) slots.push(key);
+  }
+  return slots;
+}
+
+function buildComparisonExercise(
+  entry: LexiconEntry,
+  slot: 'comp' | 'sup',
+  idx: number
+): MorphFillExercise | null {
+  if (!comparisonSlots(entry).includes(slot)) return null;
+  const forms = inflectAdj(entry);
+  const answer = forms[slot] as string;
+  const label = slot === 'comp' ? 'comparative ("more ...")' : 'superlative ("most ...")';
+  return {
+    id: `drill-comparison-${entry.id}-${slot}-${idx}`,
+    unitId: entry.unitId,
+    grammarTag: 'adj-comparison',
+    type: 'morph-fill',
+    prompt: `Write the ${label} of "${forms.common}"`,
+    baseForm: forms.common,
+    en: entry.en,
+    accepted: [answer],
+    hint: 'Comparison',
+    explanation: `${forms.common} → ${forms.comp} → ${forms.sup}`,
+    ttsText: answer,
+  };
+}
+
+function buildPassiveExercise(
+  entry: LexiconEntry,
+  idx: number,
+  rng: () => number
+): MorphFillExercise | null {
+  if (entry.morph?.pos !== 'verb' || entry.tags?.includes('rare-forms')) return null;
+  const forms = inflectVerb(entry);
+  if (!isSVerb(forms)) return null;
+
+  const slots = [
+    { key: 'past', prompt: `Write the past tense (preteritum) of "${forms.inf}"`, answer: forms.past },
+    { key: 'supine', prompt: `Write the supine (used after "har") of "${forms.inf}"`, answer: forms.supine },
+  ].filter((s) => !isBlankForm(s.answer) && /s$/i.test(s.answer) && s.answer !== forms.inf);
+
+  if (slots.length === 0) return null;
+  const chosen = slots[Math.floor(rng() * slots.length)];
+
+  return {
+    id: `drill-passive-${entry.id}-${chosen.key}-${idx}`,
+    unitId: entry.unitId,
+    grammarTag: 'verb-s-passive',
+    type: 'morph-fill',
+    prompt: chosen.prompt,
+    baseForm: forms.inf,
+    en: entry.en,
+    accepted: [chosen.answer],
+    hint: entry.morph.deponent ? 'Deponent (-s verb)' : '-s passive',
+    explanation: `${forms.inf} → ${forms.past} / har ${forms.supine}`,
+    ttsText: chosen.answer,
+  };
+}
+
+export function filterLexiconByStage(
+  lexicon: LexiconEntry[],
+  stage: CefrStage | 'all'
+): LexiconEntry[] {
+  return stage === 'all' ? lexicon : lexicon.filter((e) => e.stage === stage);
+}
+
+/**
+ * Restrict curated exercises to units of the chosen stage; fall back to the
+ * full set when the stage yields fewer than `minCount` exercises.
+ */
+export function selectCuratedByStage<T extends { unitId: string }>(
+  exercises: T[],
+  unitStages: Record<string, CefrStage>,
+  stage: CefrStage | 'all',
+  minCount: number
+): T[] {
+  if (stage === 'all') return exercises;
+  const filtered = exercises.filter((ex) => unitStages[ex.unitId] === stage);
+  return filtered.length >= minCount ? filtered : exercises;
+}
+
+/** Filtered pool when it can fill a session, otherwise the full pool. */
+export function selectDrillPool(
+  allLexicon: LexiconEntry[],
+  stage: CefrStage | 'all',
+  category: DrillCategory,
+  sessionLength: number,
+  seed?: number
+): LexiconEntry[] {
+  if (stage === 'all') return allLexicon;
+  const filtered = filterLexiconByStage(allLexicon, stage);
+  const produced = generateMorphologyDrills(category, filtered, sessionLength, seed).length;
+  return produced >= sessionLength ? filtered : allLexicon;
+}
+
 export function generateMorphologyDrills(
   category: DrillCategory,
   lexicon: LexiconEntry[],
@@ -206,6 +326,23 @@ export function generateMorphologyDrills(
   const pool = shuffleWithRng(lexicon, rng);
   const exercises: Exercise[] = [];
   const seenPrompts = new Set<string>();
+
+  if (category === 'comparison') {
+    const candidates = shuffleWithRng(
+      pool.flatMap((entry) => comparisonSlots(entry).map((slot) => ({ entry, slot }))),
+      rng
+    );
+    for (const { entry, slot } of candidates) {
+      if (exercises.length >= count) break;
+      const ex = buildComparisonExercise(entry, slot, exercises.length);
+      if (!ex) continue;
+      const key = `${ex.prompt}:${ex.baseForm}`;
+      if (seenPrompts.has(key)) continue;
+      seenPrompts.add(key);
+      exercises.push(ex);
+    }
+    return exercises;
+  }
 
   const morphCategories: Array<'gender' | 'plurals' | 'definite' | 'verbs' | 'adjectives'> = [
     'gender',
@@ -238,6 +375,9 @@ export function generateMorphologyDrills(
         break;
       case 'adjectives':
         exercise = buildAdjExercise(entry, exercises.length, rng);
+        break;
+      case 'passive':
+        exercise = buildPassiveExercise(entry, exercises.length, rng);
         break;
     }
 

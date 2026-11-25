@@ -4575,7 +4575,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/høːɡ/',
     example: { sv: 'Ett högt torn reser sig över stadens tak.', en: 'A tall tower rises above the roofs of the city.' },
     tags: ['descriptive'],
-    morph: { pos: 'adj' },
+    morph: { pos: 'adj', forms: { common: 'hög', neuter: 'högt', plDef: 'höga', comp: 'högre', sup: 'högst' } },
   },
   {
     id: 'adj:låg',
@@ -4587,7 +4587,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/loːɡ/',
     example: { sv: 'Vi bor i ett lågt trähus nära vattnet.', en: 'We live in a low wooden house near the water.' },
     tags: ['descriptive'],
-    morph: { pos: 'adj' },
+    morph: { pos: 'adj', forms: { common: 'låg', neuter: 'lågt', plDef: 'låga', comp: 'lägre', sup: 'lägst' } },
   },
   {
     id: 'adj:varm',
@@ -4623,7 +4623,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/lɔŋː/',
     example: { sv: 'Det blir ett långt möte innan vi är klara.', en: 'It will be a long meeting before we are finished.' },
     tags: ['descriptive'],
-    morph: { pos: 'adj' },
+    morph: { pos: 'adj', forms: { common: 'lång', neuter: 'långt', plDef: 'långa', comp: 'längre', sup: 'längst' } },
   },
   {
     id: 'adj:kort',
@@ -4647,7 +4647,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/ɵŋː/',
     example: { sv: 'En ung kvinna sjunger vackert i luciatåget.', en: 'A young woman sings beautifully in the Lucia procession.' },
     tags: ['descriptive', 'people'],
-    morph: { pos: 'adj' },
+    morph: { pos: 'adj', forms: { common: 'ung', neuter: 'ungt', plDef: 'unga', comp: 'yngre', sup: 'yngst' } },
   },
   {
     id: 'adj:stark',
@@ -4899,7 +4899,7 @@ export const STAGE_A1_LEXICON: LexiconEntry[] = [
     ipa: '/brɑː/',
     example: { sv: 'Det var ett bra beslut att ta tåget idag.', en: 'It was a good decision to take the train today.' },
     tags: ['descriptive', 'indeclinable'],
-    morph: { pos: 'adj', indeclinable: true, forms: { common: 'bra', neuter: 'bra', plDef: 'bra' } },
+    morph: { pos: 'adj', indeclinable: true, forms: { common: 'bra', neuter: 'bra', plDef: 'bra', comp: 'bättre', sup: 'bäst' } },
   },
   {
     id: 'adj:gratis',
