@@ -202,7 +202,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       '5 main gradation series (i-e-i skriva, y/u-ö-u flyga/njuta, i-a-u dricka, a-o-a ta/dra, ä-a-u skära/bära) + intro to mixed strong verbs (falla, komma, ligga, sova, vara, äta).',
     culturalTheme: "Sweden's Age of Great Power",
-    available: false,
+    available: true,
   },
   {
     id: 'u21',

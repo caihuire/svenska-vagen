@@ -20,6 +20,7 @@ const UNIT_LOADERS: Record<string, () => Promise<UnitContent>> = {
   u17: () => import('./units/u17').then((m) => m.default),
   u18: () => import('./units/u18').then((m) => m.default),
   u19: () => import('./units/u19').then((m) => m.default),
+  u20: () => import('./units/u20').then((m) => m.default),
 };
 
 export function isUnitLoadable(id: string): boolean {
