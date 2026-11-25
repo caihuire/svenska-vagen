@@ -212,13 +212,13 @@ export const u15: UnitContent = {
       unitId: 'u15',
       type: 'error-spotting',
       grammarTag: 'prep-place',
-      prompt: 'Tap the preposition that is unnatural here and fix it:',
-      tokens: ['Hon', 'arbetar', 'i', 'sjukhuset', 'i', 'Lund.'],
-      errorIndex: 2,
-      options: ['på', 'hos', 'vid'],
-      correctCorrection: 'på',
-      explanation: 'Most of the time, working at a hospital is på sjukhuset. The second i (i Lund) is correct, since cities take i.',
-      ttsText: 'Hon arbetar på sjukhuset i Lund.',
+      prompt: 'Tap the preposition that is wrong and fix it:',
+      tokens: ['Min', 'syster', 'bor', 'på', 'Lund', 'och', 'läser', 'juridik.'],
+      errorIndex: 3,
+      options: ['i', 'hos', 'genom'],
+      correctCorrection: 'i',
+      explanation: 'Cities take i, not på: i Lund. Hos is for people and genom means "through", so neither fits here.',
+      ttsText: 'Min syster bor i Lund och läser juridik.',
     },
     {
       id: 'u15-ex-09',
@@ -329,7 +329,7 @@ export const u15: UnitContent = {
     title: 'Samerna och Sápmi',
     subtitle: 'The Sámi People & Languages',
     markup:
-      'Samerna är ett urfolk som har bott i norra Skandinavien i många tusen år. Deras område heter Sápmi och sträcker sig över norra Sverige, Norge och Finland samt en del av Ryssland. [Gränserna|noun:gräns] mellan länderna drogs långt senare, och många samiska familjer har bott [på|prep:på] båda sidor om dem.\n\nDet finns flera samiska språk. Nordsamiska talas av flest personer, men [i|prep:i] Sverige talas också sydsamiska, lulesamiska och pitesamiska. Många samer arbetar med renskötsel, och i Sverige är det bara samer som har rätt att driva den. Samerna har också många andra yrken, och de arbetar [på|prep:på] kontor, [på|prep:på] [sjukhus|noun:sjukhus] och [i|prep:i] skolor.\n\nSametinget ligger [i|prep:i] Kiruna, långt [norr|adv:norr] om Stockholm. Varje år den sjätte februari firas samernas nationaldag. Då hänger många flaggor [på|prep:på] [väggarna|noun:vägg] i skolor och på kontor.',
+      'Samerna är ett urfolk som har bott i norra Skandinavien i många tusen år. Deras område heter Sápmi och sträcker sig över norra Sverige, Norge och Finland samt en del av Ryssland. [Gränserna|noun:gräns] mellan länderna drogs långt senare, och många samiska familjer har bott [på|prep:på] båda sidor om dem.\n\nDet finns flera samiska språk. Nordsamiska talas av flest personer, men [i|prep:i] Sverige talas också sydsamiska, lulesamiska och pitesamiska. Några samer arbetar med renskötsel, och i Sverige är det bara samer som har rätt att driva den. Samerna har också många andra yrken, och de arbetar [på|prep:på] kontor, [på|prep:på] [sjukhus|noun:sjukhus] och [i|prep:i] skolor.\n\nSametinget ligger [i|prep:i] Kiruna, långt [norr|adv:norr] om Stockholm. Varje år den sjätte februari firas samernas nationaldag. Då hänger många flaggor [på|prep:på] [väggarna|noun:vägg] i skolor och på kontor.',
     englishSummary:
       'The Sámi are an Indigenous people who have lived in northern Scandinavia for thousands of years. Their homeland, Sápmi, stretches across northern Sweden, Norway and Finland and a part of Russia. Several Sámi languages exist: North Sámi has the most speakers, and South, Lule and Pite Sámi are also spoken in Sweden. Reindeer herding is important, and in Sweden only Sámi people have the right to practise it. The Sámi Parliament is in Kiruna, and the Sámi national day is celebrated on 6 February.',
     comprehension: [
