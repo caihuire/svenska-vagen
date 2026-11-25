@@ -35,9 +35,10 @@ This roadmap tracks all work after **Wave 1** (`docs/superpowers/plans/2026-11-2
   - Flip `available: true` for `u14`–`u25` in `src/data/curriculum/manifest.ts`.
 - [x] **2.4 Extend Procedural Drill Arena for A2**
   - Enable `A2` stage filter in `DrillArenaView.tsx` for past/supine verb drills, adjective comparison, definite plural nouns, and `-s` passive forms.
-- [x] **2.5 Verify & Deploy Wave 2**
+- [x] **2.5a Verify Wave 2** (typecheck clean, vitest 14 files / 80 tests, build OK; Wave 1 SV1 codes verified)
   - Run `npm run typecheck; npx vitest run; npm run build` (Content Integrity Gate must validate all 25 available units & ~750 words).
   - Verify existing Wave 1 `SV1:...` Sync Codes still decode and smart-merge cleanly with Wave 2.
+- [ ] **2.5b Deploy Wave 2** (pending user approval)
 
 ---
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { LexiconEntry } from '../../../types/index.ts';
 import { loadAllLexicon } from '../../../data/lexicon/index.ts';
 import { inflectAdj } from '../../morphology/inflector.ts';
-import { filterLexiconByStage, generateMorphologyDrills, selectDrillPool } from '../generator.ts';
+import { filterLexiconByStage, generateMorphologyDrills, selectCuratedByStage, selectDrillPool } from '../generator.ts';
 
 const SAMPLE_LEXICON: LexiconEntry[] = [
   {
@@ -172,6 +172,41 @@ describe('generateMorphologyDrills', () => {
     }
   });
 
+  it('still drills the neuter slot of -t adjectives whose neuter equals common (kort)', () => {
+    const kort: LexiconEntry = {
+      id: 'adj:kort', lemma: 'kort', en: 'short', pos: 'adj', unitId: 'u13', stage: 'A1',
+      morph: { pos: 'adj', forms: { common: 'kort', neuter: 'kort', plDef: 'korta' } },
+    };
+    const neuterSeen = new Set<string>();
+    for (let seed = 1; seed <= 30; seed++) {
+      const drills = generateMorphologyDrills('adjectives', [kort], 1, seed);
+      expect(drills).toHaveLength(1);
+      const ex = drills[0];
+      if (ex.type === 'morph-fill') neuterSeen.add(ex.id.includes('-neuter-') ? 'neuter' : 'plDef');
+    }
+    expect(neuterSeen.has('neuter')).toBe(true);
+    expect(neuterSeen.has('plDef')).toBe(true);
+  });
+
+  it('verbs category skips rare-forms verbs such as töras', () => {
+    const toras: LexiconEntry = {
+      id: 'verb:töras', lemma: 'töras', en: 'dare', pos: 'verb', unitId: 'u24', stage: 'A2',
+      tags: ['deponent', 'rare-forms'],
+      morph: { pos: 'verb', group: 'irreg', deponent: true, forms: { inf: 'töras', imp: 'törs', pres: 'törs', past: 'tordes', supine: 'torts' } },
+    };
+    expect(generateMorphologyDrills('verbs', [toras], 5, 1)).toEqual([]);
+  });
+
+  it('selectCuratedByStage restricts to the stage and falls back when too small', () => {
+    const stages = { u01: 'A1', u02: 'A1', u14: 'A2' } as const;
+    const exs = [
+      { unitId: 'u01', id: 'a' }, { unitId: 'u02', id: 'b' }, { unitId: 'u14', id: 'c' },
+    ];
+    expect(selectCuratedByStage(exs, stages, 'A1', 2).map((e) => e.id)).toEqual(['a', 'b']);
+    expect(selectCuratedByStage(exs, stages, 'A2', 2)).toBe(exs);
+    expect(selectCuratedByStage(exs, stages, 'all', 2)).toBe(exs);
+  });
+
   it('never generates imperative drills with placeholder dashes for modal verbs', () => {
     const modalLexicon: LexiconEntry[] = [
       {
@@ -266,7 +301,7 @@ describe('A2 drills: comparison, passive, stage filter', () => {
     const pool: LexiconEntry[] = [
       verb('hoppas', ['deponent'], { inf: 'hoppas', imp: 'hoppas', pres: 'hoppas', past: 'hoppades', supine: 'hoppats' }),
       verb('byggas', ['passive'], { inf: 'byggas', imp: 'byggs', pres: 'byggs', past: 'byggdes', supine: 'byggts' }, false),
-      verb('töras', ['deponent', 'rare-forms'], { inf: 'töras', imp: 'törs', pres: 'törs', past: 'torde', supine: 'tort' }),
+      verb('töras', ['deponent', 'rare-forms'], { inf: 'töras', imp: 'törs', pres: 'törs', past: 'tordes', supine: 'torts' }),
       verb('tala', [], { inf: 'tala', imp: 'tala', pres: 'talar', past: 'talade', supine: 'talat' }, false),
     ];
     const drills = generateMorphologyDrills('passive', pool, 2, 3);
@@ -330,14 +365,15 @@ describe('A2 drills: comparison, passive, stage filter', () => {
         if (ex.type !== 'morph-fill') continue;
         keys.add(`${ex.prompt}|${ex.baseForm}`);
         expect(ex.accepted[0]).toBeTruthy();
-        expect(ex.accepted[0]).not.toBe(ex.baseForm);
+        // -t adjectives such as kort legitimately drill "neuter = common"
+        if (category !== 'adjectives') expect(ex.accepted[0]).not.toBe(ex.baseForm);
         expect(ex.accepted[0]).not.toMatch(/^[—-]+$/);
       }
       expect(keys.size).toBe(10);
     }
     for (let seed = 1; seed <= 15; seed++) {
       for (const ex of generateMorphologyDrills('adjectives', all, 20, seed)) {
-        if (ex.type === 'morph-fill') expect(ex.accepted[0]).not.toBe(ex.baseForm);
+        if (ex.type === 'morph-fill') expect(ex.accepted[0]).toBeTruthy();
       }
     }
   });

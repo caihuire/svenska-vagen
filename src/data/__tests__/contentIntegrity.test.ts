@@ -105,6 +105,16 @@ describe('Content Integrity Gate', () => {
         expect(inflected.common.length).toBeGreaterThan(0);
         expect(inflected.neuter.length).toBeGreaterThan(0);
         expect(inflected.plDef.length).toBeGreaterThan(0);
+        // suppletive/regular comparison forms, when declared, must be real and differ from common
+        if (entry.morph?.pos === 'adj') {
+          const f = entry.morph.forms;
+          if (f && (f.comp !== undefined || f.sup !== undefined)) {
+            expect(typeof f.comp === 'string' && f.comp.trim().length > 0).toBe(true);
+            expect(typeof f.sup === 'string' && f.sup.trim().length > 0).toBe(true);
+            expect(f.comp).not.toBe(inflected.common);
+            expect(f.sup).not.toBe(inflected.common);
+          }
+        }
       }
     }
   };
@@ -171,7 +181,7 @@ describe('Content Integrity Gate', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('loads all available units (u01-u13) with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
+  it('loads all available units across the whole curriculum with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
     const lexMap = await getLexiconMap();
     const availableUnits = CURRICULUM_MANIFEST.filter((u) => isUnitLoadable(u.id));
     expect(availableUnits.length).toBeGreaterThanOrEqual(13);
@@ -197,6 +207,11 @@ describe('Content Integrity Gate', () => {
         case 'word-order':
           expect(ex.chunks.length).toBeGreaterThanOrEqual(3);
           expect([...ex.chunks].sort()).toEqual([...ex.correctOrder].sort());
+          for (const order of ex.acceptedOrders ?? []) {
+            expect([...order].sort(), `${ex.id} acceptedOrders must permute chunks`).toEqual(
+              [...ex.chunks].sort()
+            );
+          }
           break;
         case 'cloze':
           expect(ex.accepted.length).toBeGreaterThan(0);
