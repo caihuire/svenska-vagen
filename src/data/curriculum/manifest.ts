@@ -152,7 +152,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'på (surface, public institutions, work/study) vs. i (volume, i skolan/affären/kyrkan); på landet vs. i landet; hos (at home/workplace); vid (beside lengthwise); spatial prepositions & compass points (norr om, sydväst om).',
     culturalTheme: 'The Sámi People & Languages',
-    available: false,
+    available: true,
   },
   {
     id: 'u16',
