@@ -353,8 +353,9 @@ export const u21: UnitContent = {
       acceptedOrders: [
         ['ofta', 'går', 'vi', 'hem'],
         ['vi', 'går', 'hem', 'ofta'],
+        ['hem', 'går', 'vi', 'ofta'],
       ],
-      explanation: 'The finite verb går is second. Ofta normally comes right after the verb (vi går ofta hem). It can also be fronted (Ofta går vi hem), and a final position (vi går hem ofta) is possible but less common.',
+      explanation: 'The finite verb går is second. Ofta normally comes right after the verb (vi går ofta hem). It can also be fronted (Ofta går vi hem), and hem can be fronted for emphasis (Hem går vi ofta). A final ofta (vi går hem ofta) is possible but less common.',
       ttsText: 'Vi går ofta hem.',
     },
     {
@@ -369,9 +370,9 @@ export const u21: UnitContent = {
       correctOrder: ['lyckligtvis', 'hade', 'vi', 'paraplyer'],
       acceptedOrders: [
         ['vi', 'hade', 'lyckligtvis', 'paraplyer'],
-        ['vi', 'hade', 'paraplyer', 'lyckligtvis'],
+        ['paraplyer', 'hade', 'vi', 'lyckligtvis'],
       ],
-      explanation: 'With lyckligtvis first the verb hade is second and the subject follows it. With vi first the order is straight, and lyckligtvis usually stands right after the verb. A final position is possible but less common.',
+      explanation: 'With lyckligtvis first the verb hade is second and the subject follows it. With vi first the order is straight, and lyckligtvis usually stands right after the verb. The object can also be fronted for emphasis (Paraplyer hade vi lyckligtvis).',
       ttsText: 'Lyckligtvis hade vi paraplyer.',
     },
     {
@@ -384,7 +385,8 @@ export const u21: UnitContent = {
       slotHints: ['Subject', 'Verb', 'Comparative', 'Comparison'],
       chunks: ['hon', 'springer', 'fortare', 'än jag'],
       correctOrder: ['hon', 'springer', 'fortare', 'än jag'],
-      explanation: 'The comparative fortare comes right after the verb, and the comparison än jag follows it. The än phrase stays together with the comparative.',
+      acceptedOrders: [['fortare', 'än jag', 'springer', 'hon']],
+      explanation: 'The comparative fortare comes right after the verb, and the comparison än jag follows it. The whole comparison can also be fronted for emphasis (Fortare än jag springer hon); the verb then stays second and the subject follows it.',
       ttsText: 'Hon springer fortare än jag.',
     },
     {
