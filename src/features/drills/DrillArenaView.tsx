@@ -7,6 +7,7 @@ import { loadAllLexicon } from '../../data/lexicon/index';
 import {
   filterLexiconByStage,
   generateMorphologyDrills,
+  selectCuratedByStage,
   selectDrillPool,
 } from '../../engine/drills/generator';
 import { getWeakGrammarTags } from '../../engine/mastery/tracker';
@@ -105,6 +106,9 @@ export function DrillArenaView() {
             ? filterLexiconByStage(allLexicon, stage)
             : allLexicon
           : selectDrillPool(allLexicon, stage, category, sessionLength);
+      const unitStages: Record<string, CefrStage> = Object.fromEntries(
+        CURRICULUM_MANIFEST.map((u) => [u.id, u.stage])
+      );
       let exercises: Exercise[] = [];
 
       if (category === 'word-order') {
@@ -112,8 +116,11 @@ export function DrillArenaView() {
           (u) => u.id
         );
         const units = await Promise.all(availableIds.map((id) => loadUnit(id)));
-        const wordOrderPool = units.flatMap((u) =>
-          u.exercises.filter((ex) => ex.type === 'word-order')
+        const wordOrderPool = selectCuratedByStage(
+          units.flatMap((u) => u.exercises.filter((ex) => ex.type === 'word-order')),
+          unitStages,
+          stage,
+          sessionLength
         );
         exercises = shuffle(wordOrderPool).slice(0, sessionLength);
         if (exercises.length < sessionLength) {
@@ -130,9 +137,13 @@ export function DrillArenaView() {
         );
         const units = await Promise.all(availableIds.map((id) => loadUnit(id)));
         const weakTagSet = new Set(weakTags.map((w) => w.tag));
-        const unitExercises = units.flatMap((u) => u.exercises);
-        const matchingCurated = unitExercises.filter((ex) =>
-          weakTagSet.has(ex.grammarTag)
+        const matchingCurated = selectCuratedByStage(
+          units
+            .flatMap((u) => u.exercises)
+            .filter((ex) => weakTagSet.has(ex.grammarTag)),
+          unitStages,
+          stage,
+          sessionLength
         );
         exercises = shuffle(matchingCurated).slice(0, sessionLength);
         if (exercises.length < sessionLength) {

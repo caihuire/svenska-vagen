@@ -117,7 +117,7 @@ export function UnitView() {
           <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--bg-surface)] px-3 py-1 text-xs font-bold text-[var(--text-muted)]">
             <Lock className="h-3.5 w-3.5" aria-hidden="true" />
             <span>
-              Stage {summary.stage} · Unit {summary.number} (Wave 2–4 Preview)
+              Stage {summary.stage} · Unit {summary.number} (Wave 3–4 Preview)
             </span>
           </div>
           <h1 className="text-xl font-extrabold text-[var(--text-primary)]">

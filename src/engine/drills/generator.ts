@@ -136,7 +136,7 @@ function buildVerbExercise(
   idx: number,
   rng: () => number
 ): MorphFillExercise | null {
-  if (entry.morph?.pos !== 'verb') return null;
+  if (entry.morph?.pos !== 'verb' || entry.tags?.includes('rare-forms')) return null;
   const forms = inflectVerb(entry);
 
   const slots: Array<{ key: string; prompt: string; answer: string }> = [
@@ -188,8 +188,11 @@ function buildAdjExercise(
       prompt: `Inflect "${forms.common}" for plural or definite nouns`,
       answer: forms.plDef,
     },
-  ].filter((s) => Boolean(s.answer) && s.answer !== forms.common);
+  ].filter((s) => Boolean(s.answer));
 
+  // Skip only degenerate entries (all forms identical, e.g. bra, gratis); -t adjectives
+  // such as kort still drill "neuter = no extra -t".
+  if (forms.neuter === forms.common && forms.plDef === forms.common) return null;
   if (slots.length === 0) return null;
   const chosen = slots[Math.floor(rng() * slots.length)];
 
@@ -280,6 +283,21 @@ export function filterLexiconByStage(
   stage: CefrStage | 'all'
 ): LexiconEntry[] {
   return stage === 'all' ? lexicon : lexicon.filter((e) => e.stage === stage);
+}
+
+/**
+ * Restrict curated exercises to units of the chosen stage; fall back to the
+ * full set when the stage yields fewer than `minCount` exercises.
+ */
+export function selectCuratedByStage<T extends { unitId: string }>(
+  exercises: T[],
+  unitStages: Record<string, CefrStage>,
+  stage: CefrStage | 'all',
+  minCount: number
+): T[] {
+  if (stage === 'all') return exercises;
+  const filtered = exercises.filter((ex) => unitStages[ex.unitId] === stage);
+  return filtered.length >= minCount ? filtered : exercises;
 }
 
 /** Filtered pool when it can fill a session, otherwise the full pool. */
