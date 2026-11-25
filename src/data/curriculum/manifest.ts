@@ -252,7 +252,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Borrowing, compounding (with/without link -s-, dropping final -e/-a as in lärare + lön -> lärarlön), basic affixation (o-, -het, -a), abbreviations & acronyms (t.ex., bl.a., d.v.s., o.s.v., s.k., bio, moms, rea).',
     culturalTheme: 'The Island of Gotland',
-    available: false,
+    available: true,
   },
 
   // Stage B1 — Intermediate Nuance (Units 26–38)
