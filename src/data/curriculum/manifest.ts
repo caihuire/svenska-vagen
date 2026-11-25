@@ -192,7 +192,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'Group I (-ade/-at); Group IIa voiced (-de/-t, -nd drops d, -mm/-nn drops one, long vowel+d doubles dd/tt); Group IIb voiceless (-te/-t); Group III long vowel (-dde/-tt); perfect (har + supine) & pluperfect (hade + supine).',
     culturalTheme: 'The Vasa Era',
-    available: false,
+    available: true,
   },
   {
     id: 'u20',
