@@ -356,7 +356,7 @@ export const u23: UnitContent = {
       errorIndex: 1,
       options: ['inte svarar', 'svarar aldrig', 'svarar bara'],
       correctCorrection: 'inte svarar',
-      explanation: 'An indirect question keeps SIV order: varför hon inte svarar. The other options keep the main-clause order (verb before the adverbial) and change the meaning.',
+      explanation: 'In standard written Swedish an indirect question keeps SIV order: varför hon inte svarar. The other options keep the main-clause order (verb before the adverbial) and change the meaning.',
       ttsText: 'Jag undrar varför hon inte svarar på mina brev.',
     },
     {
@@ -382,7 +382,7 @@ export const u23: UnitContent = {
       errorIndex: 1,
       options: ['inte kan', 'kan aldrig', 'inte komma'],
       correctCorrection: 'inte kan',
-      explanation: 'In the att-clause inte belongs before the finite verb kan: att hon inte kan komma. Kan aldrig keeps the wrong order, and inte komma would leave the clause without a finite verb.',
+      explanation: 'In standard written Swedish inte belongs, in the att-clause, before the finite verb kan: att hon inte kan komma. Kan aldrig keeps the wrong order, and inte komma would leave the clause without a finite verb.',
       ttsText: 'Hon förklarar att hon inte kan komma på festen.',
     },
     {
@@ -518,7 +518,7 @@ export const u23: UnitContent = {
         type: 'classifier',
         grammarTag: 'reading-comprehension',
         prompt: 'Who lived in the 1700s, according to the text?',
-        target: 'Carl Michael Bellman, [som|pron:som] levde på 1700-talet, är en av de mest kända visdiktarna.',
+        target: 'Bellman och Taube',
         options: ['Carl Michael Bellman', 'Evert Taube', 'Both of them'],
         correctOption: 'Carl Michael Bellman',
         explanation: 'The text says that Bellman lived in the 1700s and that Evert Taube lived in the 1900s.',
