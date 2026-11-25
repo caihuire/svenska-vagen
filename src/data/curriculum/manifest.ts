@@ -232,7 +232,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       'SIV rule (Subject – inte/clausal adverbial – Finite Verb in sub-clauses); main vs. sub-clause adverbial contrast; relative clauses with som and där.',
     culturalTheme: 'Swedish Troubadour Tradition',
-    available: false,
+    available: true,
   },
   {
     id: 'u24',
