@@ -97,7 +97,7 @@ export function WordOrderExercise({
                 type="button"
                 disabled={locked}
                 onClick={() => handleRemovePosition(posIdx)}
-                className="min-h-[48px] rounded-xl border-2 border-[var(--brand)] bg-[var(--brand)]/10 px-3.5 py-2 text-sm font-bold text-[var(--brand)] transition-transform active:scale-[0.97] select-none touch-manipulation disabled:opacity-90"
+                className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl border-2 border-[var(--brand)] bg-[var(--brand)]/10 px-3.5 py-2 text-sm font-bold text-[var(--brand)] transition-transform active:scale-[0.97] select-none touch-manipulation disabled:opacity-90"
               >
                 {exercise.chunks[chunkIdx]}
               </button>
@@ -116,7 +116,7 @@ export function WordOrderExercise({
               type="button"
               disabled={locked || used}
               onClick={() => handleAddTile(idx)}
-              className={`min-h-[48px] rounded-xl border-2 px-3.5 py-2 text-sm font-bold transition-all select-none touch-manipulation ${
+              className={`inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl border-2 px-3.5 py-2 text-sm font-bold transition-all select-none touch-manipulation ${
                 used
                   ? 'border-dashed border-[var(--border)] bg-transparent text-transparent select-none'
                   : 'border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-primary)] shadow-sm hover:border-[var(--brand)] active:scale-[0.97]'

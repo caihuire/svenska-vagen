@@ -281,7 +281,7 @@ export function ExerciseSession({
             onClick={handleToggleMute}
             aria-pressed={muted}
             aria-label={muted ? "Turn audio back on" : "Can't listen now"}
-            className={`inline-flex min-h-[48px] shrink-0 items-center gap-1.5 rounded-xl border px-2.5 text-xs font-bold transition-colors select-none touch-manipulation ${
+            className={`inline-flex min-h-[48px] min-w-[48px] shrink-0 items-center justify-center gap-1.5 rounded-xl border px-2.5 text-xs font-bold transition-colors select-none touch-manipulation ${
               muted
                 ? 'border-[var(--accent)] bg-[var(--accent)]/15 text-[var(--accent)]'
                 : 'border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-muted)]'
@@ -292,7 +292,7 @@ export function ExerciseSession({
             ) : (
               <Volume2 className="h-4 w-4 shrink-0" aria-hidden="true" />
             )}
-            <span className="hidden xs:inline sm:inline">
+            <span className="hidden sm:inline">
               {muted ? 'Muted' : "Can't listen"}
             </span>
           </button>

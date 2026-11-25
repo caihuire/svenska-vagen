@@ -158,4 +158,78 @@ describe('ExerciseSession', () => {
       })
     );
   });
+
+  it('enforces >=48px touch-target classes on mute toggle, short WordOrder tiles, and short ErrorSpotting tokens', () => {
+    const exercises: Exercise[] = [
+      {
+        id: 'test-touch-wo',
+        unitId: 'u01',
+        type: 'word-order',
+        grammarTag: 'v2-fronting',
+        prompt: 'Build the sentence:',
+        chunks: ['Det', 'är', 'bra'],
+        correctOrder: ['Det', 'är', 'bra'],
+        explanation: 'V2 word order.',
+      },
+      {
+        id: 'test-touch-es',
+        unitId: 'u01',
+        type: 'error-spotting',
+        grammarTag: 'prepositions',
+        prompt: 'Tap the wrong word:',
+        tokens: ['Jag', 'är', 'på', 'hem'],
+        errorIndex: 2,
+        options: ['i', 'hemma'],
+        correctCorrection: 'i',
+        explanation: 'Use i/hemma.',
+      },
+    ];
+
+    renderWithApp(
+      <ExerciseSession
+        title="Touch Target Test"
+        exercises={exercises}
+        onComplete={() => {}}
+        onExit={() => {}}
+      />
+    );
+
+    // 1. ExerciseSession mute toggle button ("Can't listen now" / "Turn audio back on")
+    const muteBtn = screen.getByRole('button', { name: "Can't listen now" });
+    expect(muteBtn.className).toContain('min-w-[48px]');
+    expect(muteBtn.className).toContain('min-h-[48px]');
+    expect(muteBtn.className).toContain('justify-center');
+    fireEvent.click(muteBtn);
+    const unmuteBtn = screen.getByRole('button', { name: 'Turn audio back on' });
+    expect(unmuteBtn.className).toContain('min-w-[48px]');
+    expect(unmuteBtn.className).toContain('min-h-[48px]');
+
+    // 2. WordOrderExercise short word tile ("är") in bank and placed tray
+    const bankShortTile = screen.getByRole('button', { name: 'är' });
+    expect(bankShortTile.className).toContain('min-w-[48px]');
+    expect(bankShortTile.className).toContain('min-h-[48px]');
+    fireEvent.click(bankShortTile);
+
+    // Once placed, bank copy is disabled and placed copy is enabled
+    const arButtons = screen.getAllByRole('button', { name: 'är' });
+    expect(arButtons).toHaveLength(2);
+    for (const btn of arButtons) {
+      expect(btn.className).toContain('min-w-[48px]');
+      expect(btn.className).toContain('min-h-[48px]');
+    }
+
+    // Complete WordOrder exercise to advance to ErrorSpotting
+    fireEvent.click(screen.getByRole('button', { name: 'Det' }));
+    fireEvent.click(screen.getByRole('button', { name: 'bra' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Check Order' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Continue' }));
+
+    // 3. ErrorSpottingExercise short tokens ("på" and "är")
+    const paToken = screen.getByRole('button', { name: 'på' });
+    const arToken = screen.getByRole('button', { name: 'är' });
+    expect(paToken.className).toContain('min-w-[48px]');
+    expect(paToken.className).toContain('min-h-[48px]');
+    expect(arToken.className).toContain('min-w-[48px]');
+    expect(arToken.className).toContain('min-h-[48px]');
+  });
 });

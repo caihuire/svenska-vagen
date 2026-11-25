@@ -71,7 +71,7 @@ export function ErrorSpottingExercise({
                 type="button"
                 disabled={locked}
                 onClick={() => handlePickToken(idx)}
-                className={`min-h-[48px] rounded-xl border-2 px-3 py-2 text-base font-semibold transition-colors select-none touch-manipulation ${tokenStyle}`}
+                className={`inline-flex min-h-[48px] min-w-[48px] items-center justify-center rounded-xl border-2 px-3 py-2 text-base font-semibold transition-colors select-none touch-manipulation ${tokenStyle}`}
               >
                 {token}
               </button>
