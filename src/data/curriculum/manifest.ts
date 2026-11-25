@@ -222,7 +222,7 @@ export const CURRICULUM_MANIFEST: UnitSummary[] = [
     grammarFocus:
       '3-way split: Location (var, här, där, inne, ute, uppe, nere, hemma, framme, borta), Motion Towards (vart, hit, dit, in, ut, upp, ner, hem, fram, bort), Motion Away (varifrån, härifrån, hemifrån); var/vart vs. där/dit.',
     culturalTheme: 'Viking Town of Birka',
-    available: false,
+    available: true,
   },
   {
     id: 'u23',
