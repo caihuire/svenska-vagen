@@ -22,22 +22,30 @@ export function AudioButton({
   const [rate, setRate] = useState<SpeechRate>(1);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isThisActive, setIsThisActive] = useState(false);
+  const [ttsError, setTtsError] = useState<string | null>(null);
   const supported = ttsService.isSupported();
   const disabled = !supported || muted || !text.trim();
 
   useEffect(() => {
-    return ttsService.subscribe((speaking) => {
+    const unsubSpeak = ttsService.subscribe((speaking) => {
       setIsSpeaking(speaking);
       if (!speaking) {
         setIsThisActive(false);
       }
     });
+    const unsubErr = ttsService.subscribeError((err) => {
+      setTtsError(err);
+    });
+    return () => {
+      unsubSpeak();
+      unsubErr();
+    };
   }, []);
 
   const handleSpeak = (chosenRate: SpeechRate = rate) => {
     if (disabled) return;
-    setIsThisActive(true);
     ttsService.speak(text, chosenRate);
+    setIsThisActive(true);
   };
 
   const handleToggleRate = () => {
@@ -45,6 +53,7 @@ export function AudioButton({
     setRate(nextRate);
     if (!disabled && isSpeaking && isThisActive) {
       ttsService.speak(text, nextRate);
+      setIsThisActive(true);
     }
   };
 
@@ -68,7 +77,9 @@ export function AudioButton({
             ? 'Swedish TTS unavailable'
             : muted
               ? 'Muted ("Can’t listen now" is on)'
-              : `Play Swedish audio (${rate === 1 ? '1.0x' : '0.75x'})`
+              : ttsError
+                ? ttsError
+                : `Play Swedish audio (${rate === 1 ? '1.0x' : '0.75x'})`
         }
         className={`inline-flex min-h-[48px] min-w-[48px] items-center justify-center gap-2 rounded-xl border px-3 text-sm font-semibold transition-colors select-none touch-manipulation ${
           disabled
