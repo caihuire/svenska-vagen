@@ -450,7 +450,7 @@ export const u19: UnitContent = {
     title: 'Vasatiden',
     subtitle: 'The Vasa Era',
     markup:
-      'Gustav Vasa [ledde|verb:leda] ett uppror mot den danske kungen. Den sjätte juni 1523 valdes han till kung av Sverige. Under hans tid [lämnade|verb:lämna] landet den katolska kyrkan och blev protestantiskt, och kungen [byggde|verb:bygga] upp ett starkt rike.\n\nUngefär hundra år senare [byggde|verb:bygga] man krigsskeppet Vasa i Stockholm. Många män [arbetade|verb:arbeta] på varvet, och kung Gustav II Adolf ville ha ett stort och mäktigt skepp. Den tionde augusti 1628 [lämnade|verb:lämna] Vasa hamnen på sin första resa, men efter en kort sträcka sjönk skeppet. Man [tror|verb:tro] att det var för instabilt.\n\nFörst 1961 [räddade|verb:rädda] man skeppet upp från botten. Sedan dess har många människor kunnat [möta|verb:möta] Vasa på ett museum i Stockholm.',
+      'Gustav Vasa [ledde|verb:leda] ett uppror mot den danske kungen. Den sjätte juni 1523 valdes han till kung av Sverige. Under hans tid [lämnade|verb:lämna] landet den katolska kyrkan och blev protestantiskt, och kungen [byggde|verb:bygga] upp ett starkt rike.\n\nUngefär hundra år senare [byggde|verb:bygga] man krigsskeppet Vasa i Stockholm. Många män [arbetade|verb:arbeta] på varvet, och kung Gustav II Adolf ville ha ett stort och mäktigt skepp. Den tionde augusti 1628 [lämnade|verb:lämna] Vasa hamnen på sin första resa, men efter en kort sträcka sjönk skeppet. Man [tror|verb:tro] att det var för instabilt.\n\nFörst 1961 lyfte man upp skeppet från botten. Sedan dess har många människor kunnat [möta|verb:möta] Vasa på ett museum i Stockholm.',
     englishSummary:
       'Gustav Vasa led a rebellion against the Danish king and was elected king of Sweden on 6 June 1523. In his time Sweden left the Catholic Church and became Protestant, and the king built up a strong kingdom. About a hundred years later the warship Vasa was built in Stockholm. Many men worked at the shipyard, and King Gustav II Adolf wanted a large and powerful ship. On 10 August 1628 the Vasa left the harbour on her first voyage, but after a short distance the ship sank. It is believed that it was too unstable. Only in 1961 was the ship raised from the bottom. Since then many people have been able to meet the Vasa at a museum in Stockholm.',
     comprehension: [
@@ -486,11 +486,11 @@ export const u19: UnitContent = {
         type: 'cloze',
         grammarTag: 'reading-comprehension',
         prompt: 'Pick the correct verb form for an event with a stated year:',
-        sentence: 'Först 1961 ___ man skeppet upp från botten.',
+        sentence: 'Först 1961 ___ man upp skeppet från botten.',
         mode: 'choice',
-        options: ['räddade', 'har räddat', 'räddar'],
-        accepted: ['räddade'],
-        explanation: 'With a stated year in the past the past tense räddade is used. Har räddat would not normally be combined with 1961, and räddar is the present tense.',
+        options: ['lyfte', 'har lyft', 'lyfter'],
+        accepted: ['lyfte'],
+        explanation: 'With a stated year in the past the past tense lyfte is used. Har lyft would not normally be combined with 1961, and lyfter is the present tense.',
       },
     ],
   },

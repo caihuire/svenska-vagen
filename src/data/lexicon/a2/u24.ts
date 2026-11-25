@@ -139,9 +139,10 @@ export const U24_LEXICON: LexiconEntry[] = [
     lemma: 'töras', group: 'irreg', deponent: true, en: 'to dare', ipa: '/ˈtøːras/',
     example: { sv: 'Jag törs inte ringa så sent på kvällen.', en: 'I do not dare to call so late in the evening.' },
     tags: ['deponent', 'irregular', 'rare-forms'],
-    // törs is everyday; the past (torde) and supine (tort) are rare and mostly written; in
-    // everyday speech törs or vågar is used instead.
-    forms: { inf: 'töras', imp: 'törs', pres: 'törs', past: 'torde', supine: 'tort' },
+    // Paradigm töras - törs - tordes - torts. törs is everyday; the past (tordes) and supine
+    // (torts) are rare and mostly written; in everyday speech törs or vågar is used instead.
+    // (torde is a separate modal meaning "probably".)
+    forms: { inf: 'töras', imp: 'törs', pres: 'törs', past: 'tordes', supine: 'torts' },
   }),
   verb({
     lemma: 'umgås', group: '4', deponent: true, en: 'to socialise, to spend time together', ipa: '/ˈɵmːɡoːs/',
