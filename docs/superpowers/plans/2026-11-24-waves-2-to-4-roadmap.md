@@ -14,10 +14,10 @@ This roadmap tracks all work after **Wave 1** (`docs/superpowers/plans/2026-11-2
 
 **Goal:** Unlock all 12 Stage A2 units (~360 new lexicon entries, ~130 original curated exercises, 12 original cultural readings) with zero core UI rewrites.
 
-- [ ] **2.1 Author `src/data/lexicon/stage-a2.ts`**
+- [x] **2.1 Author `src/data/lexicon/stage-a2.ts`**
   - Add ~360 `LexiconEntry` items from Units 14–25 of the Vocabulary Seed List, each with full `morph` metadata, explicit irregular `forms` overrides, and original Swedish/English example sentences.
   - Register `stage-a2.ts` in `src/data/lexicon/index.ts`.
-- [ ] **2.2 Author Original Units `src/data/curriculum/units/u14.ts` – `u25.ts`**
+- [x] **2.2 Author Original Units `src/data/curriculum/units/u14.ts` – `u25.ts`**
   - `u14` Definite Nouns & Article Usage (Currency reading)
   - `u15` Prepositions of Place (Sámi People & Languages reading)
   - `u16` Definite Adjectives: Types 1 & 2 (Bernadotte Dynasty reading)
@@ -30,12 +30,12 @@ This roadmap tracks all work after **Wave 1** (`docs/superpowers/plans/2026-11-2
   - `u23` Subordinate Clause Word Order (SIV) & Relatives (Swedish Troubadours reading)
   - `u24` `-s` Verbs: Deponents & `-s` Passives (Swedish Inventions reading)
   - `u25` Word Formation Basics (Gotland reading)
-- [ ] **2.3 Register Units & Enable on Skill Path**
+- [x] **2.3 Register Units & Enable on Skill Path**
   - Add `u14`–`u25` dynamic imports to `src/data/curriculum/loader.ts`.
   - Flip `available: true` for `u14`–`u25` in `src/data/curriculum/manifest.ts`.
-- [ ] **2.4 Extend Procedural Drill Arena for A2**
+- [x] **2.4 Extend Procedural Drill Arena for A2**
   - Enable `A2` stage filter in `DrillArenaView.tsx` for past/supine verb drills, adjective comparison, definite plural nouns, and `-s` passive forms.
-- [ ] **2.5 Verify & Deploy Wave 2**
+- [x] **2.5 Verify & Deploy Wave 2**
   - Run `npm run typecheck; npx vitest run; npm run build` (Content Integrity Gate must validate all 25 available units & ~750 words).
   - Verify existing Wave 1 `SV1:...` Sync Codes still decode and smart-merge cleanly with Wave 2.
 
