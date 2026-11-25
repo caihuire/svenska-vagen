@@ -14,7 +14,7 @@ export const u17: UnitContent = {
       id: 'u17-card-1',
       kind: 'rule',
       title: 'Regular Comparison: -are and -ast',
-      body: 'Most Swedish adjectives form the comparative with -are and the superlative with -ast, added to the basic form: kall, kallare, kallast. The comparative never agrees with gender or number: en större bil, ett större hus, större hus all use the same word. Compare two things with än (than): Det är kallare i norr än i söder. Say that two things are equal with lika + adjective + som: lika kall som i går. Adjectives ending in unstressed -el, -en or -er usually drop the e before the ending: enkel, enklare, enklast; vacker, vackrare, vackrast; mogen, mognare, mognast. A superlative used after a verb such as vara has no article and no ending: Den här sjön är djupast. Before a noun it is definite and needs den/det/de plus -aste: den billigaste cykeln, de snabbaste bilarna.',
+      body: 'Most Swedish adjectives form the comparative with -are and the superlative with -ast, added to the basic form: kall, kallare, kallast. The comparative never agrees with gender or number: en större bil, ett större hus, större hus all use the same word. Compare two things with än (than): Det är kallare i norr än i söder. Say that two things are equal with lika + adjective + som: lika kall som i går. Adjectives ending in unstressed -el, -en or -er usually drop the e before the ending: enkel, enklare, enklast; vacker, vackrare, vackrast; mogen, mognare, mognast. After a verb such as vara a superlative can stand bare, without article or ending, to compare one thing with a whole set: Den här sjön är djupast. The form den/det/de plus -aste is also possible there (Den här sjön är den djupaste). Before a noun the superlative must be definite: den billigaste cykeln, de snabbaste bilarna.',
       highlight: 'kall · kallare · kallast  ·  enkel · enklare · enklast  ·  den billigaste cykeln',
     },
     {
@@ -52,7 +52,7 @@ export const u17: UnitContent = {
         {
           sv: 'Hon är yngst av tre syskon.',
           en: 'She is the youngest of three siblings.',
-          note: 'predicate superlative: no article',
+          note: 'bare predicate superlative (den yngsta is also possible)',
         },
         {
           sv: 'Den här boken är mer intressant än filmen.',
@@ -70,7 +70,7 @@ export const u17: UnitContent = {
       id: 'u17-card-4',
       kind: 'trap',
       title: 'English Traps: "more bigger", "better than" and "the"',
-      body: 'English can say "the biggest" with an article in every position, but Swedish puts the article only before a noun: Älgen är störst, but den största älgen. Do not combine both systems: say större, not mer stor, and never mer större. Do not use mer or -are with bra or god: bättre is the only comparative of both. English "than" is än, while "as ... as" is lika ... som, so *större som and *lika stor än are wrong. A comparative also does not mean "too": för stor means too big. Finally, mindre can mean both smaller and less, and mest can mean both most and mostly, so read the context.',
+      body: 'English says "the biggest" with an article, but Swedish often leaves it out after vara: Älgen är störst is common, and Älgen är den största is also fine. Before a noun the article is required: den största älgen. Do not combine both systems: say större, not mer stor, and never mer större. Do not use mer or -are with bra or god: bättre is the only comparative of both. English "than" is än, while "as ... as" is lika ... som, so *större som and *lika stor än are wrong. A comparative also does not mean "too": för stor means too big. Finally, mindre can mean both smaller and less, and mest can mean both most and mostly, so read the context.',
       highlight: 'större (not mer stor) · bättre (not mer bra) · större än · lika stor som · Älgen är störst / den största älgen',
     },
   ],
@@ -182,7 +182,7 @@ export const u17: UnitContent = {
       en: 'Of all the lakes in the area, this one is the most beautiful.',
       accepted: ['vackrast'],
       hint: 'Adjectives in -er drop the e, then add -ast.',
-      explanation: 'After vara the superlative has no article and no extra ending: vacker becomes vackrast.',
+      explanation: 'Here the bare superlative stands after vara without article or extra ending: vacker becomes vackrast.',
       ttsText: 'Av alla sjöar i trakten är den här vackrast.',
     },
     {
@@ -260,7 +260,7 @@ export const u17: UnitContent = {
       mode: 'typed',
       accepted: ['högst'],
       hint: 'Irregular: hög, högre, högst.',
-      explanation: 'Hög has the superlative högst. After vara it has no article and no ending.',
+      explanation: 'Hög has the superlative högst. Here it stands bare after vara.',
       ttsText: 'Vilket berg är högst i Sverige?',
     },
     {
@@ -282,12 +282,12 @@ export const u17: UnitContent = {
       type: 'error-spotting',
       grammarTag: 'adj-comparison',
       prompt: 'Tap the word that is wrong and fix it:',
-      tokens: ['Filmen', 'var', 'intressantare', 'än', 'boken.'],
-      errorIndex: 2,
-      options: ['mer intressant', 'intressant', 'mest intressant'],
-      correctCorrection: 'mer intressant',
-      explanation: 'Adjectives in -ant take mer, not -are: mer intressant än boken. Intressant alone is not a comparative, and mest intressant is a superlative.',
-      ttsText: 'Filmen var mer intressant än boken.',
+      tokens: ['Vårt', 'hus', 'är', 'gammalare', 'än', 'ert.'],
+      errorIndex: 3,
+      options: ['äldre', 'äldst', 'gamla'],
+      correctCorrection: 'äldre',
+      explanation: 'Gammal is irregular: äldre, äldst. Gammalare does not exist. Äldst is a superlative and does not go with än, and gamla is the plural or definite form.',
+      ttsText: 'Vårt hus är äldre än ert.',
     },
     {
       id: 'u17-ex-13',
@@ -368,12 +368,12 @@ export const u17: UnitContent = {
       target: 'the most popular sport',
       options: [
         'den mest populära sporten',
-        'den populäraste sporten',
+        'den populärast sporten',
         'den mest populär sporten',
         'den populära sporten',
       ],
       correctOption: 'den mest populära sporten',
-      explanation: 'Populär takes mest, not -ast. Before a noun the adjective stays definite (populära) and the noun has its end article: den mest populära sporten.',
+      explanation: 'Mest is the standard choice with populär (populäraste is also heard in everyday Swedish, but it is not offered here). Before a noun the adjective stays definite (populära) and the noun has its end article: den mest populära sporten. Populärast and mest populär (without -a) are not correct.',
       ttsText: 'den mest populära sporten',
     },
     {
