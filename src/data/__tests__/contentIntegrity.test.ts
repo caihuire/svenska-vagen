@@ -117,7 +117,7 @@ describe('Content Integrity Gate', () => {
 
   it('Stage A2 lexicon has unique, well-formed entries', async () => {
     const a2: LexiconEntry[] = await loadStageLexicon('A2');
-    if (a2.length === 0) return;
+    expect(a2.length).toBeGreaterThan(0);
 
     const a1Ids = new Set((await loadStageLexicon('A1')).map((e) => e.id));
     const a2UnitIds = new Set(Array.from({ length: 12 }, (_, i) => `u${i + 14}`));
@@ -126,6 +126,7 @@ describe('Content Integrity Gate', () => {
       expect(seenIds.has(entry.id)).toBe(false);
       seenIds.add(entry.id);
       expect(a1Ids.has(entry.id)).toBe(false);
+      expect(entry.id).toBe(`${entry.pos}:${entry.lemma}`);
       expect(entry.stage).toBe('A2');
       expect(a2UnitIds.has(entry.unitId)).toBe(true);
       expect(entry.example?.sv.trim().length).toBeGreaterThan(0);
@@ -135,11 +136,39 @@ describe('Content Integrity Gate', () => {
     assertInflectable(a2);
   });
 
-  // TODO(Task 14): enable and pin the exact STAGE_A2_LEXICON.length.
-  it.skip('A2 lexicon totals', async () => {
+  it('A2 lexicon totals', async () => {
     const a2 = await loadStageLexicon('A2');
     expect(a2.length).toBeGreaterThanOrEqual(330);
     expect(a2.length).toBeLessThanOrEqual(400);
+    expect(a2).toHaveLength(379);
+
+    const a2Units = CURRICULUM_MANIFEST.filter((u) => u.stage === 'A2');
+    expect(a2Units).toHaveLength(12);
+    expect(a2Units.map((u) => u.id)).toEqual(Array.from({ length: 12 }, (_, i) => `u${i + 14}`));
+    for (const unit of a2Units) {
+      expect(unit.available).toBe(true);
+      expect(isUnitLoadable(unit.id)).toBe(true);
+    }
+  });
+
+  it('no available unit has literal [surface|lexId] token markup in exercise text fields', async () => {
+    const markupRe = /\[[^\]|]+\|[^\]]+\]/;
+    const fields = ['target', 'prompt', 'sentence', 'explanation', 'ttsText', 'fallbackText', 'audioText', 'options', 'chunks', 'tokens'];
+    const offenders: string[] = [];
+    for (const summary of CURRICULUM_MANIFEST.filter((u) => isUnitLoadable(u.id))) {
+      const unit: UnitContent = await loadUnit(summary.id);
+      const all: Exercise[] = [...unit.exercises, ...unit.culturalText.comprehension];
+      for (const ex of all) {
+        const record = ex as unknown as Record<string, unknown>;
+        for (const field of fields) {
+          const value = record[field];
+          if (value === undefined) continue;
+          const text = Array.isArray(value) ? value.join(' ') : String(value);
+          if (markupRe.test(text)) offenders.push(`${ex.id}.${field}`);
+        }
+      }
+    }
+    expect(offenders).toEqual([]);
   });
 
   it('loads all available units (u01-u13) with valid thresholds, unique exercise IDs, and resolvable lexicon & markup references', async () => {
