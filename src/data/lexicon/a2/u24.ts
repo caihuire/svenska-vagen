@@ -136,10 +136,10 @@ export const U24_LEXICON: LexiconEntry[] = [
     forms: { inf: 'tyckas', imp: 'tycks', pres: 'tycks', past: 'tycktes', supine: 'tyckts' },
   }),
   verb({
-    lemma: 'töras', group: 'irreg', deponent: true, en: 'to dare (somewhat formal)', ipa: '/ˈtøːras/',
+    lemma: 'töras', group: 'irreg', deponent: true, en: 'to dare', ipa: '/ˈtøːras/',
     example: { sv: 'Jag törs inte ringa så sent på kvällen.', en: 'I do not dare to call so late in the evening.' },
     tags: ['deponent', 'irregular', 'rare-forms'],
-    // The past (torde) and supine (tort) are rare and mostly written; in
+    // törs is everyday; the past (torde) and supine (tort) are rare and mostly written; in
     // everyday speech törs or vågar is used instead.
     forms: { inf: 'töras', imp: 'törs', pres: 'törs', past: 'torde', supine: 'tort' },
   }),
@@ -189,7 +189,7 @@ export const U24_LEXICON: LexiconEntry[] = [
   }),
   verb({
     lemma: 'patentera', group: '1', en: 'to patent', ipa: '/patɛnˈteːra/',
-    example: { sv: 'Han patenterade sin uppfinning år 1888.', en: 'He patented his invention in 1888.' },
+    example: { sv: 'Han patenterade sin uppfinning år 1888.', en: 'He patented his invention in the 1800s.' },
     tags: ['group-1', 'invention'],
     forms: { inf: 'patentera', imp: 'patentera', pres: 'patenterar', past: 'patenterade', supine: 'patenterat' },
   }),
@@ -241,15 +241,6 @@ export const U24_LEXICON: LexiconEntry[] = [
     defSg: 'propellern', indefPl: 'propellrar', defPl: 'propellrarna',
     example: { sv: 'Propellern på båten snurrar snabbt.', en: 'The propeller on the boat spins fast.' },
     tags: ['invention', 'transport'],
-  }),
-  noun({
-    lemma: 'gisslan', en: 'hostage', ipa: '/ˈjɪslan/', gender: 'en', declension: 'irreg',
-    // Zero-ending noun in -an: the forms below follow the commonly given
-    // paradigm (en gisslan, gisslan, gisslan, gisslan); treat as low-priority
-    // and do not drill the inflection.
-    defSg: 'gisslan', indefPl: 'gisslan', defPl: 'gisslan',
-    example: { sv: 'Polisen räddade gisslan oskadd.', en: 'The police rescued the hostage unharmed.' },
-    tags: ['news'],
   }),
   noun({
     lemma: 'brandkår', en: 'fire brigade', ipa: '/ˈbrandˌkoːr/', gender: 'en', declension: 3,

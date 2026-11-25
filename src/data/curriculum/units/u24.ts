@@ -113,7 +113,6 @@ export const u24: UnitContent = {
     'noun:skiftnyckel',
     'noun:säkerhetständsticka',
     'noun:propeller',
-    'noun:gisslan',
     'noun:brandkår',
     'noun:tvättmaskin',
     'verb:finnas',
